@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :collects
   get 'search' => 'slack_rails#index'
   post 'search' => 'slack_rails#search'
+  root 'collects#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
