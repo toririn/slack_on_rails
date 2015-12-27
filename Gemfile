@@ -27,7 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slack'
 # jqueryイベントが発火しなくなる問題を解決するgem
 gem 'jquery-turbolinks'
-
+# material-designを使う
+gem 'bootstrap-material-design'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
