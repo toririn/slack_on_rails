@@ -21,4 +21,20 @@ class SlackRailsController < ApplicationController
     params.require(:slack).permit(:channel, :user, :reaction, :keywords)
   end
 
+  def type_of(result)
+    self["type"]
+  end
+
+  def text_of(result)
+    self["text"]
+  end
+
+  def channel_name_of(result)
+    self["channel"]["name"]
+  end
+
+  def messages_matched_of(result)
+    self["messages"]["matches"]
+  end
+
 end
