@@ -1,14 +1,14 @@
 class SlackRailsController < ApplicationController
   def index
-    @user_list = SlackRails.user_list
-    @channel_list = SlackRails.channel_list
-    @reaction_list = SlackRails.reaction_list
+    @user_list = Service::SlackRails.user_list
+    @channel_list = Service::SlackRails.channel_list
+    @reaction_list = Service::SlackRails.reaction_list
   end
 
   def search
-    @user_list = SlackRails.user_list
-    @channel_list = SlackRails.channel_list
-    @reaction_list = SlackRails.reaction_list
+    @user_list = Service::SlackRails.user_list
+    @channel_list = Service::SlackRails.channel_list
+    @reaction_list = Service::SlackRails.reaction_list
 
     @slack_search_form = Search::SlackSearchForm.new(search_params)
     @results = @slack_search_form.search

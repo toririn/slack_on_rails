@@ -1,5 +1,5 @@
 require 'slack'
-class SlackRails < ActiveRecord::Base
+class Service::SlackRails < ActiveRecord::Base
   scope :channel_list, -> {
     channel_list = get_channel_list
     if channel_list
