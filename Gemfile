@@ -29,6 +29,7 @@ gem 'slack-api'
 gem 'jquery-turbolinks'
 # material-designを使う
 gem 'bootstrap-material-design'
+gem 'bootstrap3-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
