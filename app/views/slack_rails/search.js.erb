@@ -1,7 +1,7 @@
 <% if @validate.errors.present? %>
   $('#error_messages').html("error")
   $('#result').html("")
-<% elsif @results.empty? %>
+<% elsif extract_for_table(@results).empty? %>
   $('#error_messages').html("<%=j br(RESULTS_EMPTY_MESSAGE) %>")
   $('#result').html("")
 <% else @results %>
