@@ -1,66 +1,23 @@
 <div class = "container">
   <div class = "row">
-<h2>Slackを検索します。</h2>
-<%= form_tag('/search', method: :post) do %>
-  <%= label_tag('slack[chanel]', "チャンネル名") %>
-  <%= select_tag('slack[channel]', options_for_select(@channel_list.unshift(["全部", "all"]))) %>
-  <%= label_tag('slack[user]', "ユーザ名") %>
-  <%= select_tag('slack[user]', options_for_select(@user_list.unshift(["全部", "all"]))) %>
-  <%= label_tag('slack[reaction]', "リアクション") %>
-  <%= select_tag('slack[reaction]', options_for_select(@reaction_list.unshift(["全部", "all"]))) %>
-  <%= label_tag('slack[keywords]', "検索文字列") %>
-  <%= text_field_tag('slack[keywords]') %>
-  <%= submit_tag('検索') %>
-<% end %>
-
-<% if @results %>
-  <h2>検索結果</h2>
-  <%= form_tag('/save', method: :post) do %>
-    <table class = "table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>
-            No
-          </th>
-          <th>
-            該当チャンネル
-          </th>
-          <th>
-            ユーザ
-          </th>
-          <th>
-            発言内容
-          </th>
-          <th>
-            リンク
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-    <% @results.each.with_index(1) do |result, idx| %>
-      <tr>
-        <td>
-          <%= idx %>
-        </td>
-        <td>
-          <%= result[1] %>
-        </td>
-        <td>
-          <%= result[3] %>
-        </td>
-        <td>
-          <%= result[4] %>
-        </td>
-        <td>
-          <%= result[5] %>
-        </td>
-      </tr>
+    <div id = "error_messages">
+    </div>
+    <h2>Slackを検索します。</h2>
+    <%= form_tag('/search', remote: true, method: :post) do %>
+      <%= label_tag('slack[chanel]', "チャンネル名") %>
+      <%= select_tag('slack[channel]', options_for_select(@channel_list.unshift(["全部", "all"]))) %>
+      <%= label_tag('slack[user]', "ユーザ名") %>
+      <%= select_tag('slack[user]', options_for_select(@user_list.unshift(["全部", "all"]))) %>
+      <%= label_tag('slack[reaction]', "リアクション") %>
+      <%= select_tag('slack[reaction]', options_for_select(@reaction_list.unshift(["全部", "all"]))) %>
+      <br />
+      <%= label_tag('slack[keywords]', "検索文字列") %>
+      <%= text_field_tag('slack[keywords]') %>
+      <%= submit_tag('検索') %>
     <% end %>
-      </tbody>
-    </table>
-    <%= submit_tag('保存') %>
-    <%= submit_tag('loadge出力') %>
-  <% end %>
-<% end %>
+
+    <div id = "result">
+    </div>
+
   </div>
 </div>

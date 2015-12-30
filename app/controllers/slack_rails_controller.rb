@@ -12,7 +12,6 @@ class SlackRailsController < ApplicationController
 
     @slack_search_form = Search::SlackSearchForm.new(search_params)
     @results = @slack_search_form.search
-    render 'index'
   end
 
   private

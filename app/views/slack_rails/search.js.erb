@@ -1,0 +1,10 @@
+<% if @slack_search_form.errors.present? %>
+  $('#error_messages').html("error")
+  $('#result').html("")
+<% elsif @results.empty? %>
+  $('#error_messages').html("<%=j RESULTS_EMPTY_MESSAGE %>")
+  $('#result').html("")
+<% else @results %>
+  $('#result').html('<%=j render partial: 'result', locals: { results: @results } %>')
+  $('#error_messages').html("")
+<% end %>
