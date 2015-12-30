@@ -3,18 +3,20 @@
     <div id = "error_messages">
     </div>
     <h2>Slackを検索します。</h2>
-    <%= form_tag('/search', remote: true, method: :post) do %>
+    <div class = "form-group" >
+    <%= form_tag('/search', remote: true, method: :post, ) do %>
       <%= label_tag('slack[chanel]', "チャンネル名") %>
-      <%= select_tag('slack[channel]', options_for_select(@channel_list.unshift(["全部", "all"]))) %>
+      <%= select_tag('slack[channel]', options_for_select(@channel_list.unshift(["全部", "all"])), class: "form-control") %>
       <%= label_tag('slack[user]', "ユーザ名") %>
-      <%= select_tag('slack[user]', options_for_select(@user_list.unshift(["全部", "all"]))) %>
+      <%= select_tag('slack[user]', options_for_select(@user_list.unshift(["全部", "all"])), class: "form-control") %>
       <%= label_tag('slack[reaction]', "リアクション") %>
-      <%= select_tag('slack[reaction]', options_for_select(@reaction_list.unshift(["全部", "all"]))) %>
+      <%= select_tag('slack[reaction]', options_for_select(@reaction_list.unshift(["全部", "all"])), class: "form-control") %>
       <br />
       <%= label_tag('slack[keywords]', "検索文字列") %>
-      <%= text_field_tag('slack[keywords]') %>
-      <%= submit_tag('検索') %>
+      <%= text_field_tag('slack[keywords]', '', class: "form-control") %>
+      <%= submit_tag('検索', class: "btn btn-primary") %>
     <% end %>
+    </div>
 
     <div id = "result">
     </div>
