@@ -2,7 +2,7 @@
   $('#error_messages').html("error")
   $('#result').html("")
 <% elsif @results.empty? %>
-  $('#error_messages').html("<%=j RESULTS_EMPTY_MESSAGE %>")
+  $('#error_messages').html("<%=j br(RESULTS_EMPTY_MESSAGE) %>")
   $('#result').html("")
 <% else @results %>
   $('#result').html('<%=j render partial: 'result', locals: { results: @results } %>')
