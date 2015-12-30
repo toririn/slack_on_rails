@@ -6,12 +6,11 @@ class SlackRailsController < ApplicationController
   end
 
   def search
-    @user_list = Service::SlackRails.user_list
-    @channel_list = Service::SlackRails.channel_list
-    @reaction_list = Service::SlackRails.reaction_list
+    @validate = Validators::SlackSearch.new(search_params)
+    return render if @validate.has_error?
 
-    @slack_search_form = Search::SlackSearchForm.new(search_params)
-    @results = @slack_search_form.search
+    parameters = set_parameters
+    @results = Service::SlackRails.search_by_query(parameters.query)
   end
 
   private
@@ -20,20 +19,12 @@ class SlackRailsController < ApplicationController
     params.require(:slack).permit(:channel, :user, :reaction, :keywords)
   end
 
-  def type_of(result)
-    self["type"]
+  def set_parameters
+    parameters = Parameters::SlackSearch.new
+    parameters.channel = params[:slack][:channel]
+    parameters.user = params[:slack][:user]
+    parameters.reaction = params[:slack][:reaction]
+    parameters.keywords = params[:slack][:keywords]
+    parameters
   end
-
-  def text_of(result)
-    self["text"]
-  end
-
-  def channel_name_of(result)
-    self["channel"]["name"]
-  end
-
-  def messages_matched_of(result)
-    self["messages"]["matches"]
-  end
-
 end

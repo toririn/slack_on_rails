@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-    <% results.each.with_index(1) do |result, idx| %>
+    <% extract_for_table(results).each.with_index(1) do |result, idx| %>
       <tr>
         <td>
           <%= idx %>

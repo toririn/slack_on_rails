@@ -1,4 +1,4 @@
-<% if @slack_search_form.errors.present? %>
+<% if @validate.errors.present? %>
   $('#error_messages').html("error")
   $('#result').html("")
 <% elsif @results.empty? %>
