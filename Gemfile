@@ -30,6 +30,8 @@ gem 'jquery-turbolinks'
 # material-designを使う
 gem 'bootstrap-material-design'
 gem 'bootstrap3-rails'
+# decorators層導入のため
+gem 'draper', '~> 1.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
