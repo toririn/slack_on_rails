@@ -39,7 +39,7 @@ class Parameters::SlackSearch
     if user == "all"
       ""
     else
-      "in:#{user}"
+      "from:#{user}"
     end
   end
 end
