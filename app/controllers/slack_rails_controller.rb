@@ -1,7 +1,7 @@
 class SlackRailsController < ApplicationController
   before_action :set_user_image_list, only: [:search, :search_link]
   before_action :set_slack_markdown_processor
-  before_action :set_query_select_list, only: [:index, :query]
+  before_action :set_query_select_list, only: [:index, :query, :channel]
   before_action :set_channel_list
 
   def index
@@ -28,6 +28,10 @@ class SlackRailsController < ApplicationController
     parameters = set_link_parameters
     @results = Service::SlackRails.search_by_link(parameters.query, parameters.ts)
     render 'search'
+  end
+
+  def channel
+    @channel = params[:channel]
   end
 
   private
@@ -66,12 +70,16 @@ class SlackRailsController < ApplicationController
   end
 
   def set_query_select_list
-    @user_list = Service::SlackRails.user_list
-    @channel_list = Service::SlackRails.channel_list
     @reaction_list = Service::SlackRails.reaction_list
+    set_user_list
+    set_channel_list
   end
 
   def set_channel_list
     @channel_list = Service::SlackRails.channel_list
+  end
+
+  def set_user_list
+    @user_list = Service::SlackRails.user_list
   end
 end

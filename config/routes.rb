@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'search/link' => 'slack_rails#link'
   post 'search' => 'slack_rails#search'
   post 'search_link' => 'slack_rails#search_link'
+  get 'search/:channel' => 'slack_rails#channel'
   root 'collects#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

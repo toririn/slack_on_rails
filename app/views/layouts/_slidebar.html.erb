@@ -1,10 +1,10 @@
-<div role="complementary" style="background-color: #4D394B; color: #AB9BA9;">
+<div class="hidden-xs" role="complementary" style="background-color: #4D394B; color: #AB9BA9;">
   <br />
-  <h5>■Channel</h5>
+  <h5>■Channelを指定して検索</h5>
   <ul style="height: 960px;">
     <% channel_list.each do |channel| %>
       <li>
-        <a href="#"><%= channel[0] %></a>
+        <a href="/search/<%= channel[0] %>"><%= channel[0] %></a>
       </li>
     <% end %>
   </ul>
