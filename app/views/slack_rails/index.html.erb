@@ -1,25 +1,57 @@
-<div class = "container">
-  <div class = "row">
-    <div id = "error_messages">
+<div class="container">
+  <div class="row">
+    <div id="error_messages">
     </div>
-    <h2>Slackを検索します。</h2>
-    <div class = "form-group" >
-    <%= form_tag('/search', remote: true, method: :post, ) do %>
-      <%= label_tag('slack[chanel]', "チャンネル名") %>
-      <%= select_tag('slack[channel]', options_for_select(@channel_list.unshift(["全部", "all"])), class: "form-control") %>
-      <%= label_tag('slack[user]', "ユーザ名") %>
-      <%= select_tag('slack[user]', options_for_select(@user_list.unshift(["全部", "all"])), class: "form-control") %>
-      <%= label_tag('slack[reaction]', "リアクション") %>
-      <%= select_tag('slack[reaction]', options_for_select(@reaction_list.unshift(["全部", "all"])), class: "form-control") %>
-      <br />
-      <%= label_tag('slack[keywords]', "検索文字列") %>
-      <%= text_field_tag('slack[keywords]', '', class: "form-control") %>
-      <%= submit_tag('検索', class: "btn btn-primary") %>
-    <% end %>
-    </div>
+    <h2>レッツSlack検索</h2>
+    <div class="form-group" >
+      <h3>検索対象設定</h3>
+      <%= form_tag('/search', remote: true, method: :post, ) do %>
+        <h4>自分で設定する</h4>
+        <div class="col-sm-4">
+          <%= label_tag('slack[chanel]', "チャンネル名") %>
+          <%= select_tag('slack[channel]', options_for_select(options_channel_list(@channel_list)), class: "form-control") %>
+        </div>
+        <div class="col-sm-4">
+          <%= label_tag('slack[user]', "ユーザ名") %>
+          <%= select_tag('slack[user]', options_for_select(options_user_list(@user_list)), class: "form-control") %>
+        </div>
+        <div class="col-sm-4">
+          <%= label_tag('slack[reaction]', "リアクション") %>
+          <%= select_tag('slack[reaction]', options_for_select(options_reaction_list(@reaction_list)), class: "form-control") %>
+        </div>
+        <div class="col-xm-12">
+          <%= label_tag('slack[keywords]', "検索文字列") %>
+          <%= text_field_tag('slack[keywords]', '', class: "form-control") %>
+        </div>
+        <div class="col-xm-12 accordion-heading">
+          <a class="accordion_toggle" data-toggle="collapse" data-parent="#faq" href="#add_search">
+            <span class="glyphicon-plus"></span>さらに絞り込む
+          </a>
+        </div>
+        <div id="add_search" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <%= label_tag('slack[from_date]', "検索期間") %>
+            <%= datetime_select('slack[from_date]', {}, class: "form-control") %>
+            <span>=></span>
+            <%= datetime_select('slack[to_date]', {}, class: "form-control") %>
+          </div>
+        </div>
+        <%= submit_tag('検索', class: "btn btn-primary") %>
+      <% end %>
+    </div><!-- class;form-group -->
+    <div class="form-group" >
+      <%= form_tag('/search_link', remote: true, method: :post, ) do %>
+        <h4>リンクで設定する</h4>
+        <div class="col-xm-12">
+          <%= label_tag('slack[link]', "チャットへのリンク") %>
+          <%= text_field_tag('slack[link]', '', class: "form-control") %>
+          <%= submit_tag('検索', class: "btn btn-primary") %>
+        </div>
+      <% end %>
+    </div><!-- class:form-group -->
 
     <div id = "result">
     </div>
 
-  </div>
-</div>
+  </div><!-- class:row -->
+</div><!-- class:container -->

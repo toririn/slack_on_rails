@@ -32,6 +32,18 @@ class Service::SlackRails < ActiveRecord::Base
     client.search_messages(query: query)
   }
 
+  scope :search_by_link, ->(query, ts="") {
+    client = set_slack_client
+    results = client.search_messages(query: query)
+    ts_d = ts.delete("p")
+    results["messages"]["matches"] = results["messages"]["matches"].map do |result|
+      if result["ts"].delete(".") >= ts_d
+        result
+      end
+    end.compact
+    results
+  }
+
   def channel_name_list(results)
     results["messages"]["matches"].map do |result|
       [result["channel"]["id"], result["channel"]["name"]]
