@@ -1,5 +1,5 @@
 class Parameters::SlackSearch
-  include Service::SlackBase
+  include Service::Base::Slack
 
   def query
     "#{query_keywords} #{query_channel} #{query_user}"

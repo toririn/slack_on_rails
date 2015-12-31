@@ -1,5 +1,5 @@
 class Validators::SlackSearch < Validators::Base
-  include Service::SlackBase
+  include Service::Base::Slack
 
   validates :channel, presence: true
   validates :user, presence: true

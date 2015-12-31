@@ -1,4 +1,4 @@
-module Service::SlackBase
+module Service::Base::Slack
   attr_accessor(
     :channel,
     :user,
