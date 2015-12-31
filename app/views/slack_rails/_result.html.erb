@@ -1,13 +1,29 @@
 <script>
 $(function() {
-  $('.drag').draggable();
-  $('.drop').droppable();
+  $('.drag').draggable({
+    revert: true
+  });
+  $('.drop').droppable({
+    tolerance: 'touch',
+    drop: function(e, ui){
+      $(this).html(
+        $(this).html() +
+        '<td class="bg-success">' +
+        ui.draggable.html() +
+        '</td>'
+       );
+      $('.drag').draggable({
+        revert: true
+      });
+    }
+  })
 });
 </script>
 <% if results %>
-  <div class="col-sm-6">
   <h2>検索結果</h2>
   <%= form_tag('/save', method: :post) do %>
+    <%= submit_tag('保存', class: "btn btn-info") %>
+    <%= submit_tag('loadge出力', class: "btn btn-success") %>
     <table class = "table table-bordered table-hover table-condensed">
       <thead>
         <tr class="bg-primary">
@@ -21,11 +37,11 @@ $(function() {
       </thead>
       <tbody>
     <% extract_for_table(results).each.with_index(1) do |result, idx| %>
-      <tr class="<%= cycle('bg-success', 'bg-warning') %> drag">
+      <tr class="<%= cycle('bg-success', 'bg-warning') %>">
         <td>
           <%= idx %><br />
         </td>
-        <td>
+        <td class="drag">
           <img src="<%= user_image_list[result[3]] %>" />
           <a href="<%= result[5] %>"><%= result[3] %></a><br />
             <%= slack_markdown_processor.call(result[4])[:output].to_s.html_safe %>
@@ -36,23 +52,5 @@ $(function() {
     <% end %>
       </tbody>
     </table>
-    <%= submit_tag('保存', class: "btn btn-info") %>
-    <%= submit_tag('loadge出力', class: "btn btn-success") %>
   <% end %>
-  </div>
-  <div class="col-sm-6 drop">
-    <h2>保存対象</h2>
-    <table class = "table table-bordered table-hover table-condensed">
-      <thead>
-        <tr class="bg-primary">
-          <th>
-            No
-          </th>
-          <th>
-            Info
-          </th>
-        </tr>
-      </thead>
-    </table>
-  </div>
 <% end %>
