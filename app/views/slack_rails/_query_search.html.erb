@@ -1,6 +1,6 @@
 <div class="form-group" >
   <%= form_tag('/search', remote: true, method: :post, ) do %>
-    <h4>自分で設定する</h4>
+    <h4>自分で設定した内容で検索する</h4>
     <div class="col-sm-6">
       <%= label_tag('slack[chanel]', "チャンネル名") %>
       <%= select_tag('slack[channel]', options_for_select(options_channel_list(channel_list)), class: "form-control") %>
