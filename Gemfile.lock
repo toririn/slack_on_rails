@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/Promptus/ladda-rails.git
+  revision: 8b0c16a2a5ba61ffa2e6ea2d0b887104a52a981d
+  specs:
+    ladda-rails (0.9.7)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -344,6 +350,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  ladda-rails!
   launchy
   mysql2 (~> 0.3.20)
   pry-byebug

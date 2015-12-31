@@ -18,3 +18,5 @@
 //= require bootstrap
 //= require bootstrap-material-design
 //= require vue
+//= require spin
+//= require ladda

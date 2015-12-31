@@ -39,6 +39,8 @@ gem 'rails-assets-vue'
 gem 'slack_markdown'
 # jquery-ui使用のため
 gem 'jquery-ui-rails'
+# 送信中のアニメーション追加のため
+gem 'ladda-rails', :git => 'git://github.com/Promptus/ladda-rails.git'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
