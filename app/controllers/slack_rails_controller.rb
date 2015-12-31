@@ -1,4 +1,6 @@
 class SlackRailsController < ApplicationController
+  before_action :set_user_image_list, only: [:search, :search_link]
+
   def index
     @user_list = Service::SlackRails.user_list
     @channel_list = Service::SlackRails.channel_list
@@ -45,5 +47,9 @@ class SlackRailsController < ApplicationController
     parameters = Parameters::SlackSearchLink.new
     parameters.link = params[:slack][:link]
     parameters
+  end
+
+  def set_user_image_list
+    @user_image_list = Service::SlackRails.user_image_list
   end
 end

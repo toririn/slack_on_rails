@@ -50,8 +50,10 @@
       <% end %>
     </div><!-- class:form-group -->
 
-    <div id = "result">
+    <div id="result" class="col-sm-6">
     </div>
-
+    <div id="result_save" class="col-sm-6">
+          <%= text_field_tag('slack[keywords]', '', class: "form-control") %>
+    </div>
   </div><!-- class:row -->
 </div><!-- class:container -->

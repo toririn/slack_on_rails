@@ -5,6 +5,6 @@
   $('#error_messages').html("<%=j br(RESULTS_EMPTY_MESSAGE) %>")
   $('#result').html("")
 <% else @results %>
-  $('#result').html('<%=j render partial: 'result', locals: { results: @results } %>')
+  $('#result').html('<%=j render partial: 'result', locals: { results: @results, user_image_list: @user_image_list } %>')
   $('#error_messages').html("")
 <% end %>

@@ -18,6 +18,11 @@ class Service::SlackRails < ActiveRecord::Base
     end
   }
 
+  scope :user_image_list, -> {
+    user_image_list = get_user_image_list.to_h
+    user_image_list || []
+  }
+
   scope :reaction_list, ->{
     reaction_list = get_reaction_list
     if reaction_list
@@ -70,6 +75,14 @@ class Service::SlackRails < ActiveRecord::Base
     users = client.users_list
     users["members"].map do |user|
       [user["name"], user["id"]]
+    end
+  end
+
+  def self.get_user_image_list
+    client = set_slack_client
+    users = client.users_list
+    users["members"].map do |user|
+      [user["name"], user["profile"]["image_72"]]
     end
   end
 
