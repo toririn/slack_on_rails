@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -32,6 +33,8 @@ gem 'bootstrap-material-design'
 gem 'bootstrap3-rails'
 # decorators層導入のため
 gem 'draper', '~> 1.3'
+# vue.js使用のため
+gem 'rails-assets-vue'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
