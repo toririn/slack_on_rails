@@ -49,12 +49,6 @@ class Service::SlackRails < ActiveRecord::Base
     results
   }
 
-  def channel_name_list(results)
-    results["messages"]["matches"].map do |result|
-      [result["channel"]["id"], result["channel"]["name"]]
-    end
-  end
-
   private
 
   def self.set_slack_client
