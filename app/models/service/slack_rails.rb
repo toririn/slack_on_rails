@@ -82,7 +82,7 @@ class Service::SlackRails < ActiveRecord::Base
     client = set_slack_client
     users = client.users_list
     users["members"].map do |user|
-      [user["name"], user["profile"]["image_72"]]
+      [user["name"], user["profile"]["image_24"]]
     end
   end
 

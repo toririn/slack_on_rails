@@ -35,6 +35,8 @@ gem 'bootstrap3-rails'
 gem 'draper', '~> 1.3'
 # vue.js使用のため
 gem 'rails-assets-vue'
+# markdownをhtml変換するため
+gem 'slack_markdown'
 # jquery-ui使用のため
 gem 'jquery-ui-rails'
 # Use ActiveModel has_secure_password
