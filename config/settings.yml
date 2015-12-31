@@ -1,0 +1,19 @@
+defaults: &defaults
+  MAIL_USER: test
+  MAIL_PASSWORD: hogehoge
+  DB_USERNAME: root
+  DB_PASSWORD: root
+  DB_SOCKET: /Applications/MAMP/tmp/mysql/mysql.sock
+  SLACK_API_TOKEN: xxxx
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  DB_USERNAME: foobar
+  DB_PASSWORD: hogehoge
+  DB_SOCKET: /var/lib/mysql/mysql.sock
