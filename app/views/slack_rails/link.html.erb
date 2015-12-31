@@ -3,12 +3,6 @@
     <div id="error_messages">
     </div>
     <h2>レッツSlack検索</h2>
-    <%= render(partial: 'query_search', locals: {
-        channel_list: @channel_list,
-        user_list: @user_list,
-        reaction_list: @reaction_list
-      }
-    )%>
     <%= render(partial: 'link_search') %>
     <div class="col-sm-6" style="float: right;">
       <%= render(partial: 'save') %>

@@ -1,11 +1,15 @@
 class SlackRailsController < ApplicationController
   before_action :set_user_image_list, only: [:search, :search_link]
   before_action :set_slack_markdown_processor
+  before_action :set_query_select_list, only: [:index, :query]
 
   def index
-    @user_list = Service::SlackRails.user_list
-    @channel_list = Service::SlackRails.channel_list
-    @reaction_list = Service::SlackRails.reaction_list
+  end
+
+  def query
+  end
+
+  def link
   end
 
   def search
@@ -58,5 +62,11 @@ class SlackRailsController < ApplicationController
     @slack_markdown_processor = SlackMarkdown::Processor.new(
       asset_root: 'https://assets.github.com/images/icons/',
     )
+  end
+
+  def set_query_select_list
+    @user_list = Service::SlackRails.user_list
+    @channel_list = Service::SlackRails.channel_list
+    @reaction_list = Service::SlackRails.reaction_list
   end
 end
