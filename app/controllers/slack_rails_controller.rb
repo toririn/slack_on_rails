@@ -1,7 +1,7 @@
 class SlackRailsController < ApplicationController
   before_action :set_user_image_list, only: [:search, :search_link]
   before_action :set_slack_markdown_processor
-  before_action :set_query_select_list, only: [:index, :query, :channel]
+  before_action :set_query_select_list, only: [:index, :query, :channel, :save]
   before_action :set_channel_list
 
   def index
@@ -34,7 +34,26 @@ class SlackRailsController < ApplicationController
     @channel = params[:channel]
   end
 
+  def save
+    if params.include?(:save)
+      save_for_mysql
+    elsif params.include?(:lodge)
+      output_for_lodge
+    end
+    render action: 'index'
+  end
+
   private
+
+  def save_for_mysql
+    #TODO: MySQLへの保存処理
+  end
+
+  def output_for_lodge
+    #TODO: lodgeへの出力処理
+    lodge_support = Service::LodgeSupport.new(set_lodge_params)
+    binding.pry
+  end
 
   def search_params
     params.require(:slack).permit(:channel, :user, :reaction, :keywords)
@@ -42,6 +61,10 @@ class SlackRailsController < ApplicationController
 
   def search_link_params
     params.require(:slack).permit(:link)
+  end
+
+  def set_lodge_params
+    params.permit(images: [], names: [], texts: [], channels: [])
   end
 
   def set_parameters
