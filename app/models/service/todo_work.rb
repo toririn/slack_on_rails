@@ -52,7 +52,7 @@ class Service::TodoWork
   end
 
   def today_ts
-    today = Date.new
+    today = Time.new
     times = Time.mktime(today.year, today.month, today.day, 0, 0, 0)
     times.to_i
   end
