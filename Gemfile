@@ -74,6 +74,9 @@ group :development, :test do
   gem "test-queue"         # テストを並列で実行する
   gem 'faker'              # 本物っぽいテストデータの作成
   gem 'faker-japanese'     # 本物っぽいテストデータの作成（日本語対応）))
+
+  # サンプルデータ作成関連
+  gem "seed-fu", "~> 2.3"
 end
 
 group :development do
