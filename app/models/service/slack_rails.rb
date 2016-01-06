@@ -1,43 +1,45 @@
 require 'slack'
-class Service::SlackRails < ActiveRecord::Base
-  scope :channel_list, -> {
+class Service::SlackRails
+  include ActiveModel::Model
+
+  def self.channel_list
     channel_list = get_channel_list
     if channel_list
       channel_list
     else
       []
     end
-  }
+  end
 
-  scope :user_list, -> {
+  def self.user_list
     user_list = get_user_list
     if user_list
       user_list
     else
       []
     end
-  }
+  end
 
-  scope :user_image_list, -> {
+  def self.user_image_list
     user_image_list = get_user_image_list.to_h
     user_image_list || []
-  }
+  end
 
-  scope :reaction_list, ->{
+  def self.reaction_list
     reaction_list = get_reaction_list
     if reaction_list
       reaction_list.uniq
     else
       []
     end
-  }
+  end
 
-  scope :search_by_query, ->(query) {
+  def self.search_by_query(query)
     client = set_slack_client
     client.search_messages(query: query)
-  }
+  end
 
-  scope :search_by_link, ->(query, ts="") {
+  def self.search_by_link(query, ts="")
     client = set_slack_client
     results = client.search_messages(query: query)
     ts_d = ts.delete("p")
@@ -47,7 +49,7 @@ class Service::SlackRails < ActiveRecord::Base
       end
     end.compact
     results
-  }
+  end
 
   private
 
