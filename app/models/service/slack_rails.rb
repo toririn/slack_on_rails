@@ -5,7 +5,8 @@ class Service::SlackRails
   def self.channel_list
     channel_list = get_channel_list
     if channel_list
-      channel_list
+      #channel名で並び替える
+      channel_list.sort {|a, b| a[0] <=> b[0] }
     else
       []
     end
