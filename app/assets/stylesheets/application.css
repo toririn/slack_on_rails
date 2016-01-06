@@ -16,4 +16,6 @@
  *= require bootstrap
  *= require bootstrap-material-design
  *= require ladda
+ *= require nprogress
+ *= require nprogress-bootstrap
  */

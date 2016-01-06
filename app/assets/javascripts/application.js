@@ -20,3 +20,5 @@
 //= require vue
 //= require spin
 //= require ladda
+//= require nprogress
+//= require nprogress-turbolinks
