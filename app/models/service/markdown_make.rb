@@ -1,6 +1,5 @@
 class Service::MarkdownMake
 
-
   def self.user_info(name, image_url)
     image_markdown = "![#{name}](#{image_url} \"#{name}\")"
     user_markdown = user_name(name)
@@ -68,7 +67,8 @@ class Service::MarkdownMake
   end
 
   def self.html_to_markdown(html)
-    html
+    p = HTMLPage.new(contents: html)
+    p.markdown
   end
 
   def self.ts_to_date(ts)

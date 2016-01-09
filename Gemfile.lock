@@ -144,6 +144,8 @@ GEM
     html-pipeline (1.11.0)
       activesupport (>= 2)
       nokogiri (~> 1.4)
+    html2markdown (0.0.3)
+      nokogiri
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     jbuilder (2.3.2)
@@ -349,6 +351,7 @@ DEPENDENCIES
   guard-livereload
   hirb
   hirb-unicode
+  html2markdown
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks

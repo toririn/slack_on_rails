@@ -44,6 +44,7 @@ class Service::LodgeSupport
   # ユーザにダウンロードさせるmarkdown記法でコーディングされた文字列を返す
   def output_markdown
     string = Array.new
+    string.push(Service::MarkdownMake.title("記事のタイトル")+ "\n"*2)
     join_params.each do |params|
       user_info = Service::MarkdownMake.user_info(params[2], params[1])
       text = Service::MarkdownMake.text(params[0])
