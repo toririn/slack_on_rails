@@ -43,6 +43,8 @@ gem 'jquery-ui-rails'
 gem 'ladda-rails', :git => 'git://github.com/Promptus/ladda-rails.git'
 # ブログレスバー実装のため
 gem 'nprogress-rails'
+# htmlからmarkdownを生成するため
+gem 'html2markdown'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

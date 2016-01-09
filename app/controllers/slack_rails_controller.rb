@@ -36,9 +36,11 @@ class SlackRailsController < SlackAppController
     if params.include?(:save)
       save_for_mysql
     elsif params.include?(:lodge)
-      output_for_lodge
+      date = output_for_lodge
+      filename = Time.new.strftime("%Y%m%d%H%M%S") + ".txt"
     end
-    render action: 'index'
+    send_data(date, type: 'text/csv', filename: filename)
+#    return render action: 'index'
   end
 
   private
@@ -50,7 +52,7 @@ class SlackRailsController < SlackAppController
   def output_for_lodge
     #TODO: lodgeへの出力処理
     lodge_support = Service::LodgeSupport.new(set_lodge_params)
-    binding.pry
+    lodge_support.output_date('markdown')
   end
 
   def search_params
@@ -62,7 +64,7 @@ class SlackRailsController < SlackAppController
   end
 
   def set_lodge_params
-    params.permit(images: [], names: [], texts: [], channels: [])
+    params.permit(images: [], names: [], texts: [], channels: [], links: [], tss: [])
   end
 
   def set_parameters

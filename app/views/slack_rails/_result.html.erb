@@ -22,7 +22,6 @@ $(function() {
 <% if results %>
   <h2>検索結果</h2>
   <%= form_tag('/save', method: :post) do %>
-    <%= submit_tag('保存', class: "btn btn-info", name: "save") %>
     <%= submit_tag('lodge出力', class: "btn btn-success", name: "lodge") %>
     <table class = "table table-bordered table-hover table-condensed">
       <thead>
@@ -47,6 +46,8 @@ $(function() {
           <input type="hidden" name="names[]" value="<%= result[3] %>">
           <input type="hidden" name="texts[]" value="<%= result[4] %>">
           <input type="hidden" name="channels[]" value="<%= result[1] %>">
+          <input type="hidden" name="links[]" value="<%= result[5] %>">
+          <input type="hidden" name="tss[]" value="<%= result[6] %>">
           <a href="<%= result[5] %>"><%= result[3] %></a><br />
             <%= slack_markdown_processor.call(result[4])[:output].to_s.html_safe %>
             <br />
