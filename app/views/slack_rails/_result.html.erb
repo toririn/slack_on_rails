@@ -47,6 +47,8 @@ $(function() {
           <input type="hidden" name="names[]" value="<%= result[3] %>">
           <input type="hidden" name="texts[]" value="<%= result[4] %>">
           <input type="hidden" name="channels[]" value="<%= result[1] %>">
+          <input type="hidden" name="links[]" value="<%= result[5] %>">
+          <input type="hidden" name="tss[]" value="<%= result[6] %>">
           <a href="<%= result[5] %>"><%= result[3] %></a><br />
             <%= slack_markdown_processor.call(result[4])[:output].to_s.html_safe %>
             <br />

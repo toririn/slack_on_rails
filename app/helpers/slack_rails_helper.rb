@@ -12,8 +12,8 @@ module SlackRailsHelper
   def extract_for_table(search_results)
     return [] if search_results["messages"].nil?
     search_results["messages"]["matches"].map do |res|
-      [res["channel"]["id"], res["channel"]["name"], res["user"], res["username"], res["text"], res["permalink"]]
-    end.sort { |a, b| a[5] <=> b[5] }
+      [res["channel"]["id"], res["channel"]["name"], res["user"], res["username"], res["text"], res["permalink"], res["ts"]]
+    end.sort { |a, b| a[6] <=> b[6] }
   end
 
   def options_channel_list(channel_list)

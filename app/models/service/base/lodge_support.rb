@@ -4,5 +4,7 @@ module Service::Base::LodgeSupport
     :names,
     :texts,
     :channels,
+    :links,
+    :tss,
   )
 end
