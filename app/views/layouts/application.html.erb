@@ -11,7 +11,9 @@
   <div style="margin-top:60px;">
     <div class="row">
       <div class="col-sm-2">
-        <%= render partial: 'layouts/slidebar', locals: { channel_list: @channel_list } %>
+        <% cache "slide", expires_in: 1.minutes, skip_digest: true do %>
+          <%= render partial: 'layouts/slidebar', locals: { channel_list: @channel_list } %>
+        <% end %>
       </div>
       <div class="col-sm-10">
         <div id="error_messages">
