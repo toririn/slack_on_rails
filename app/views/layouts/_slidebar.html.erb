@@ -39,16 +39,12 @@ function todo_submit(name){
     <h5>その他</h5>
     <li><%= select_tag('etc_search', options_for_select(etc_in(channel_list)), class: "form-control slide_bar_select", onchange: "search_submit('etc_search')") %></li>
   <% end %>
-    <h4>■タスク状況確認■</h4>
-    <h5>kb系</h5>
-    <%= form_tag('/todo_work', name: "todo_form") do %>
-    <li><%= select_tag('kb_todo', options_for_select(kb_in(channel_list)), class: "form-control slide_bar_select", onchange: "todo_submit('kb_todo')") %></li>
+  <h4>■タスク状況確認■</h4>
+  <%= form_tag('/todo_work', name: "todo_form") do %>
     <h5>times系</h5>
     <li><%= select_tag('times_todo', options_for_select(times_in(channel_list)), class: "form-control slide_bar_select", onchange: "todo_submit('times_todo')") %></li>
     <h5>xclub系</h5>
     <li><%= select_tag('xclub_todo', options_for_select(xclub_in(channel_list)), class: "form-control slide_bar_select", onchange: "todo_submit('xclub_todo')") %></li>
-    <h5>その他</h5>
-    <li><%= select_tag('etc_todo', options_for_select(etc_in(channel_list)), class: "form-control slide_bar_select", onchange: "todo_submit('etc_todo')") %></li>
   <% end %>
   </ul>
 </div>

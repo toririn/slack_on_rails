@@ -18,7 +18,7 @@ class TodoWorkController < SlackAppController
 
   def delete_todolist
     channel_id = Service::SlackRails.channel_name_to_id(name: params[:channel])
-    Service::SlackRails.delete_by_chat_in_channel(ts: params[:ts], channel_id: channel_id)
+    @result_delete = Service::SlackRails.delete_by_chat_in_channel(ts: params[:ts], channel_id: channel_id)
     set_todolist
   end
 
