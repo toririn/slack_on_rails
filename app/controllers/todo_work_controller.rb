@@ -13,7 +13,14 @@ class TodoWorkController < SlackAppController
   end
 
   def modify
+    @channel_name = params[:channel]
 
+    @todo_list = todo_works.todo_list
+    @do_list = todo_works.do_list
+    @done_list = todo_works.done_list
+    @comment_list = todo_works.comment_list
+    set_todolist
+    render action: 'index'
   end
 
   def delete_todolist
@@ -31,6 +38,8 @@ class TodoWorkController < SlackAppController
   def set_todo_works
     todo_works = Service::TodoWork.new
     todo_works.channel = channel_name
+    todo_works.selected_day = params[:selected_day][0] if params.include?(:selected_day)
+    binding.pry
     todo_works
   end
 

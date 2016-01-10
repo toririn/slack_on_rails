@@ -26,7 +26,6 @@ class Service::TodoWork
     list_by_todolist
   end
 
-
   private
 
   def result_messages
@@ -39,7 +38,8 @@ class Service::TodoWork
 
   def list_by(keyword)
     result_messages["messages"]["matches"].map do |result|
-      if result["ts"].slice(0, result["ts"].index(".")).to_i >= today_ts
+      res_ts = result["ts"].slice(0, result["ts"].index(".")).to_i
+      if res_ts >= day_ts && res_ts <= (day_ts + add_1day_ts)
         if result["text"] =~ /\A#{keyword}::/
           [result["text"], result["ts"]]
         end
@@ -70,11 +70,22 @@ class Service::TodoWork
     times.to_i
   end
 
-  def select_day_ts
-    #TODO: 画面から渡された日付のdayを返す
-    today = Time.new
-    times = Time.mktime(today.year, today.month, today.day, 0, 0, 0)
+  # 選択した日付があればその秒数を。なければnilを返す。
+  def selected_day_ts
+    return nil if selected_day.nil?
+    # paramの日付がmm/dd/yyyy hh:MM;ss で渡されるため以下で分離
+    day_temp = selected_day.slice(0, selected_day.index(" "))
+    month, day, year = day_temp.split("/")
+    times = Time.mktime(year, month, day, 0, 0, 0)
     times.to_i
+  end
+
+  def day_ts
+    selected_day_ts || today_ts
+  end
+
+  def add_1day_ts
+    24*60*60
   end
 
 end

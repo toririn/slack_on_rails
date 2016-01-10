@@ -22,3 +22,5 @@
 //= require ladda
 //= require nprogress
 //= require nprogress-turbolinks
+//= require moment
+//= require bootstrap-datetimepicker

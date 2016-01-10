@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # todo_workのroute
   post 'todo_work/:channel/delete_todolist' => 'todo_work#delete_todolist'
   get 'todo_work/:channel' => 'todo_work#index'
+  post 'todo_work/:channel' => 'todo_work#modify'
   # searchのroute
   get 'search/query' => 'slack_rails#query'
   get 'search/link' => 'slack_rails#link'
