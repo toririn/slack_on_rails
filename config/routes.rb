@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :collects
   get 'search' => 'slack_rails#index'
+  # todo_workのroute
+  post 'todo_work/:channel/delete_todolist' => 'todo_work#delete_todolist'
   get 'todo_work/:channel' => 'todo_work#index'
+  # searchのroute
   get 'search/query' => 'slack_rails#query'
   get 'search/link' => 'slack_rails#link'
   post 'search' => 'slack_rails#search'

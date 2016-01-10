@@ -52,6 +52,17 @@ class Service::SlackRails
     results
   end
 
+  def self.delete_by_chat_in_channel(ts: , channel_id:)
+    client = set_slack_client
+    result = client.chat_delete(ts: ts, channel: channel_id)
+    result["ok"]
+  end
+
+  def self.channel_name_to_id(name: )
+    channel_list = get_channel_list
+    channel_list.find{ |ch| ch[0] == name }[1]
+  end
+
   private
 
   def self.set_slack_client

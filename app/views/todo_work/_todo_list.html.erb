@@ -1,0 +1,26 @@
+<table class = "table table-bordered table-hover table-condensed">
+  <thead>
+    <tr class="bg-primary">
+      <th>
+        No
+      </th>
+      <th>
+        todo
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% todo_list.each.with_index(1) do |todo, idx| %>
+    <tr class="<%= cycle('bg-success', 'bg-warning') %>">
+      <td>
+        <%= idx %><br />
+      </td>
+      <td >
+        <%= work_by (@slack_markdown_processor.call(todo[0])[:output].to_s.html_safe) %>
+        <br />
+        <span class="small text-muted"><%= time_by(todo[1]) %></span>
+      </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>

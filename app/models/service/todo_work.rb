@@ -22,6 +22,11 @@ class Service::TodoWork
     list_by("SAY")
   end
 
+  def todolist
+    list_by_todolist
+  end
+
+
   private
 
   def result_messages
@@ -42,6 +47,14 @@ class Service::TodoWork
     end.compact.sort { |a,b| a[1] <=> b[1] }
   end
 
+  def list_by_todolist
+    result_messages["messages"]["matches"].map do |result|
+      if result["text"] =~ /\ATODOLIST::/
+        [result["text"], result["ts"]]
+      end
+    end.compact.sort { |a,b| a[1] <=> b[1] }
+  end
+
   def query
     "in:#{channel}"
   end
@@ -52,6 +65,13 @@ class Service::TodoWork
   end
 
   def today_ts
+    today = Time.new
+    times = Time.mktime(today.year, today.month, today.day, 0, 0, 0)
+    times.to_i
+  end
+
+  def select_day_ts
+    #TODO: 画面から渡された日付のdayを返す
     today = Time.new
     times = Time.mktime(today.year, today.month, today.day, 0, 0, 0)
     times.to_i
