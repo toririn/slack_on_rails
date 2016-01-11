@@ -36,12 +36,11 @@ class Service::SlackRails
 
   def self.search_by_query(query)
     client = set_slack_client
-    client.search_messages(query: query)
+    client.search_messages(query: query, count: 350)
   end
 
   def self.search_by_link(query, ts="")
-    client = set_slack_client
-    results = client.search_messages(query: query)
+    results = search_by_query(query)
     ts_d = ts.delete("p")
     results["messages"]["matches"] = results["messages"]["matches"].map do |result|
       if result["ts"].delete(".") >= ts_d
