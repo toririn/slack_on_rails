@@ -9,7 +9,7 @@ class TodoWorkController < SlackAppController
     @do_list = todo_works.do_list
     @done_list = todo_works.done_list
     @comment_list = todo_works.comment_list
-    set_todolist
+    set_task_list
   end
 
   def modify
@@ -19,14 +19,14 @@ class TodoWorkController < SlackAppController
     @do_list = todo_works.do_list
     @done_list = todo_works.done_list
     @comment_list = todo_works.comment_list
-    set_todolist
+    set_task_list
     render action: 'index'
   end
 
-  def delete_todolist
+  def delete_task
     channel_id = Service::SlackRails.channel_name_to_id(name: params[:channel])
     @result_delete = Service::SlackRails.delete_by_chat_in_channel(ts: params[:ts], channel_id: channel_id)
-    set_todolist
+    set_task_list
   end
 
   private
@@ -47,8 +47,8 @@ class TodoWorkController < SlackAppController
     @channel_name ||= params[:channel]
   end
 
-  def set_todolist
-    @todolist = todo_works.todolist
+  def set_task_list
+    @task_list = todo_works.task_list
   end
 
 end

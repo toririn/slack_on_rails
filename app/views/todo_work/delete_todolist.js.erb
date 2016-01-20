@@ -1,4 +1,4 @@
-$('#todolist').html("<%=j render(partial: 'todolist', locals: { todolist: @todolist } ) %>")
+$('#task_list').html("<%=j render(partial: 'task_list', locals: { task_list: @task_list } ) %>")
 <% if @result_delete %>
   alert("削除が完了しました。反映には時間がかかるのでしばらく待ってから更新してください。");
 <% else %>

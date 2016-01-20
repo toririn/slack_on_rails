@@ -2,8 +2,8 @@
   【<%= @channel_name %>】の今日のタスク状況
   <a class="small" href="/todo_work/<%= @channel_name %>">更新する</a>
 </h2>
-<div id="todolist" class="col-sm-12">
-  <%= render(partial: 'todolist', locals: { todolist: @todolist } ) %>
+<div id="task_list" class="col-sm-12">
+  <%= render(partial: 'task_list', locals: { task_list: @task_list } ) %>
 </div>
 <div id="todo_list"  class="col-sm-4">
   <%= render(partial: 'todo_list', locals: { todo_list: @todo_list } ) %>

@@ -22,8 +22,8 @@ class Service::TodoWork
     list_by("SAY")
   end
 
-  def todolist
-    list_by_todolist
+  def task_list
+    list_by_task
   end
 
   private
@@ -47,9 +47,9 @@ class Service::TodoWork
     end.compact.sort { |a,b| a[1] <=> b[1] }
   end
 
-  def list_by_todolist
+  def list_by_task
     result_messages["messages"]["matches"].map do |result|
-      if result["text"] =~ /\ATODOLIST::/
+      if result["text"] =~ /\ATASK::/
         [result["text"], result["ts"]]
       end
     end.compact.sort { |a,b| a[1] <=> b[1] }
