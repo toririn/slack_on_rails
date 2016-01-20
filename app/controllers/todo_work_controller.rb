@@ -9,6 +9,7 @@ class TodoWorkController < SlackAppController
     @do_list = todo_works.do_list
     @done_list = todo_works.done_list
     @comment_list = todo_works.comment_list
+    @book_list = todo_works.book_list
     set_task_list
   end
 
@@ -19,6 +20,7 @@ class TodoWorkController < SlackAppController
     @do_list = todo_works.do_list
     @done_list = todo_works.done_list
     @comment_list = todo_works.comment_list
+    @book_list = todo_works.book_list
     set_task_list
     render action: 'index'
   end

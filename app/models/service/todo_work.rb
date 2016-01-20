@@ -25,6 +25,10 @@ class Service::TodoWork
   def task_list
     list_by_task
   end
+  
+  def book_list
+    list_by_book
+  end
 
   private
 
@@ -40,7 +44,7 @@ class Service::TodoWork
     result_messages["messages"]["matches"].map do |result|
       res_ts = result["ts"].slice(0, result["ts"].index(".")).to_i
       if res_ts >= day_ts && res_ts <= (day_ts + add_1day_ts)
-        if result["text"] =~ /\A#{keyword}::/
+        if result["text"] =~ /\A#{keyword}::/i
           [result["text"], result["ts"]]
         end
       end
@@ -49,7 +53,15 @@ class Service::TodoWork
 
   def list_by_task
     result_messages["messages"]["matches"].map do |result|
-      if result["text"] =~ /\ATASK::/
+      if result["text"] =~ /\ATASK::/i
+        [result["text"], result["ts"]]
+      end
+    end.compact.sort { |a,b| a[1] <=> b[1] }
+  end
+
+  def list_by_book
+    result_messages["messages"]["matches"].map do |result|
+      if result["text"] =~ /\A((BOOK)|(STOCK))::/i
         [result["text"], result["ts"]]
       end
     end.compact.sort { |a,b| a[1] <=> b[1] }

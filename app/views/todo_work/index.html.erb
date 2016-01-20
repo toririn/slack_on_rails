@@ -17,6 +17,9 @@
 <div id="comment_list" class="col-sm-12">
   <%= render(partial: 'comment_list', locals: { comment_list: @comment_list } ) %>
 </div>
+<div id="book_list" class="col-sm-12">
+  <%= render(partial: 'book_list', locals: { book_list: @book_list } ) %>
+</div>
 <div class="col-sm-4 pull-right">
 <%= form_tag("/todo_work/#{@channel_name}" , name: "todo_date_form") do %>
     過去のタスク状況を見る。
