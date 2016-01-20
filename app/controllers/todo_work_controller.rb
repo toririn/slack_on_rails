@@ -39,7 +39,6 @@ class TodoWorkController < SlackAppController
     todo_works = Service::TodoWork.new
     todo_works.channel = channel_name
     todo_works.selected_day = params[:selected_day][0] if params.include?(:selected_day)
-    binding.pry
     todo_works
   end
 
