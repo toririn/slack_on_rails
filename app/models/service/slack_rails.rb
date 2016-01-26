@@ -5,7 +5,8 @@ class Service::SlackRails
   def self.channel_list
     channel_list = get_channel_list
     if channel_list
-      channel_list
+      #channel名で並び替える
+      channel_list.sort {|a, b| a[0] <=> b[0] }
     else
       []
     end
@@ -48,6 +49,17 @@ class Service::SlackRails
       end
     end.compact
     results
+  end
+
+  def self.delete_by_chat_in_channel(ts: , channel_id:)
+    client = set_slack_client
+    result = client.chat_delete(ts: ts, channel: channel_id)
+    result["ok"]
+  end
+
+  def self.channel_name_to_id(name: )
+    channel_list = get_channel_list
+    channel_list.find{ |ch| ch[0] == name }[1]
   end
 
   private

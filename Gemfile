@@ -41,8 +41,13 @@ gem 'slack_markdown'
 gem 'jquery-ui-rails'
 # 送信中のアニメーション追加のため
 gem 'ladda-rails', :git => 'git://github.com/Promptus/ladda-rails.git'
+# ブログレスバー実装のため
+gem 'nprogress-rails'
 # htmlからmarkdownを生成するため
 gem 'html2markdown'
+# 日付入力のgem
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

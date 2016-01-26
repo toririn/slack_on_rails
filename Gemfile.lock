@@ -61,6 +61,8 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap3-datetimepicker-rails (4.17.37)
+      momentjs-rails (>= 2.8.1)
     bootstrap3-rails (3.2.0)
       rails (>= 4.0.0)
     builder (3.2.2)
@@ -176,6 +178,8 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
+    momentjs-rails (2.11.0)
+      railties (>= 3.1)
     multi_json (1.11.2)
     multipart-post (2.0.0)
     mysql2 (0.3.20)
@@ -185,6 +189,7 @@ GEM
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    nprogress-rails (0.1.6.7)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -337,6 +342,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-material-design
+  bootstrap3-datetimepicker-rails
   bootstrap3-rails
   bullet
   byebug
@@ -358,7 +364,9 @@ DEPENDENCIES
   jquery-ui-rails
   ladda-rails!
   launchy
+  momentjs-rails
   mysql2 (~> 0.3.20)
+  nprogress-rails
   pry-byebug
   pry-doc
   pry-rails
