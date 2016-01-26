@@ -13,23 +13,6 @@
       <%= label_tag('slack[keywords]', "検索文字列") %>
       <%= text_field_tag('slack[keywords]', '', class: "form-control") %>
     </div>
-    <div class="col-sm-12 accordion-heading">
-      <a class="accordion_toggle" data-toggle="collapse" data-parent="#faq" href="#add_search">
-        <span class="glyphicon-plus"></span>さらに絞り込む
-      </a>
-    </div>
-    <div id="add_search" class="accordion-body collapse">
-      <div class="accordion-inner col-sm-12">
-        <%= label_tag('slack[from_date]', "検索期間") %>
-        <%= datetime_select('slack[from_date]', {}, class: "form-control") %>
-        <span>=></span>
-        <%= datetime_select('slack[to_date]', {}, class: "form-control") %>
-      </div>
-      <div class="col-sm-12">
-        <%= label_tag('slack[reaction]', "リアクション") %>
-        <%= select_tag('slack[reaction]', options_for_select(options_reaction_list(reaction_list)), class: "form-control") %>
-      </div>
-    </div>
     <%= submit_tag('検索', class: "btn btn-primary ladda-button", "data-style" => "contract") %>
   <% end %>
 </div><!-- class;form-group -->
