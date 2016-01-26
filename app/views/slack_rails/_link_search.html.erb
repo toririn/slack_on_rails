@@ -1,0 +1,10 @@
+<div class="form-group" >
+  <%= form_tag('/search_link', remote: true, method: :post, ) do %>
+    <h4>リンクで検索する</h4>
+    <div class="col-xm-12">
+      <%= label_tag('slack[link]', "チャットへのリンク") %>
+      <%= text_field_tag('slack[link]', '', class: "form-control") %>
+      <%= submit_tag('検索', class: "btn btn-primary ladda-button", "data-style"=> "contract") %>
+    </div>
+  <% end %>
+</div><!-- class:form-group -->

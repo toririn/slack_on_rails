@@ -1,0 +1,18 @@
+<div class="form-group" >
+  <%= form_tag('/search', remote: true, method: :post, ) do %>
+    <h4>自分で設定した内容で検索する</h4>
+    <div class="col-sm-6">
+      <%= label_tag('slack[chanel]', "チャンネル名") %>
+      <%= select_tag('slack[channel]', options_for_select(options_channel_list(channel_list)), class: "form-control") %>
+    </div>
+    <div class="col-sm-6">
+      <%= label_tag('slack[user]', "ユーザ名") %>
+      <%= select_tag('slack[user]', options_for_select(options_user_list(user_list)), class: "form-control") %>
+    </div>
+    <div class="col-sm-12">
+      <%= label_tag('slack[keywords]', "検索文字列") %>
+      <%= text_field_tag('slack[keywords]', '', class: "form-control") %>
+    </div>
+    <%= submit_tag('検索', class: "btn btn-primary ladda-button", "data-style" => "contract") %>
+  <% end %>
+</div><!-- class;form-group -->

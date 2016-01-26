@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  resources :collects
+  get 'search' => 'slack_rails#index'
+  # todo_workのroute
+  post 'todo_work/:channel/delete_task' => 'todo_work#delete_task'
+  get 'todo_work/:channel' => 'todo_work#index'
+  post 'todo_work/:channel' => 'todo_work#modify'
+  # searchのroute
+  get 'search/query' => 'slack_rails#query'
+  get 'search/link' => 'slack_rails#link'
+  post 'search' => 'slack_rails#search'
+  post 'search_link' => 'slack_rails#search_link'
+  get 'search/:channel' => 'slack_rails#channel'
+  post 'save' => 'slack_rails#save'
+  post 'save_lodge' => 'slack_rails#save_lodge'
+  root 'collects#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

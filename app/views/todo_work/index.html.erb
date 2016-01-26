@@ -1,0 +1,36 @@
+<h2>
+  【<%= @channel_name %>】の今日のタスク状況
+  <a class="small" href="/todo_work/<%= @channel_name %>">更新する</a>
+</h2>
+<div id="task_list" class="col-sm-12">
+  <%= render(partial: 'task_list', locals: { task_list: @task_list } ) %>
+</div>
+<div id="todo_list"  class="col-sm-4">
+  <%= render(partial: 'todo_list', locals: { todo_list: @todo_list } ) %>
+</div>
+<div id="do_list" class="col-sm-4">
+  <%= render(partial: 'do_list', locals: { do_list: @do_list } ) %>
+</div>
+<div id="done_list" class="col-sm-4">
+  <%= render(partial: 'done_list', locals: { do_list: @do_list, done_list: @done_list } ) %>
+</div>
+<div id="comment_list" class="col-sm-12">
+  <%= render(partial: 'comment_list', locals: { comment_list: @comment_list } ) %>
+</div>
+<div id="book_list" class="col-sm-12">
+  <%= render(partial: 'book_list', locals: { book_list: @book_list } ) %>
+</div>
+<div class="col-sm-4 pull-right">
+<%= form_tag("/todo_work/#{@channel_name}" , name: "todo_date_form") do %>
+    過去のタスク状況を見る。
+    <%= text_field(:selected_day, '', class: 'form-control datetimepicker', placeholder: '日付を入力してね') %>
+    <%= submit_tag('表示', class: "btn btn-primary ladda-button", "data-style" => "contract") %>
+  <% end %>
+</div>
+<script>
+$(document).ready(function(){
+  var data = {'data-format': 'yyyy-MM-dd' };
+  $('.datetimepicker').attr(data);
+  $('.datetimepicker').datetimepicker();
+});
+</script>

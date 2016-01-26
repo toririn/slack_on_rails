@@ -1,0 +1,61 @@
+<script>
+$(function() {
+  $('.drag').draggable({
+    revert: true
+  });
+  $('.drop').droppable({
+    tolerance: 'touch',
+    drop: function(e, ui){
+      $(this).html(
+        $(this).html() +
+        '<td class="bg-success">' +
+        ui.draggable.html() +
+        '</td>'
+       );
+      $('.drag').draggable({
+        revert: true
+      });
+    }
+  })
+});
+</script>
+<% if results %>
+  <h2>検索結果</h2>
+  <%= form_tag('/save', method: :post) do %>
+    <%= submit_tag('lodge出力', class: "btn btn-success", name: "lodge") %>
+    <table class = "table table-bordered table-hover table-condensed">
+      <thead>
+        <tr class="bg-primary">
+          <th>
+            No
+          </th>
+          <th>
+            Info
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+    <% extract_for_table(results).each.with_index(1) do |result, idx| %>
+      <tr class="<%= cycle('bg-success', 'bg-warning') %>">
+        <td>
+          <%= idx %><br />
+        </td>
+        <td class="drag">
+          <img src="<%= user_image_list[result[3]] %>" />
+          <input type="hidden" name="images[]" value="<%= user_image_list[result[3]] %>">
+          <input type="hidden" name="names[]" value="<%= result[3] %>">
+          <input type="hidden" name="texts[]" value="<%= result[4] %>">
+          <input type="hidden" name="channels[]" value="<%= result[1] %>">
+          <input type="hidden" name="links[]" value="<%= result[5] %>">
+          <input type="hidden" name="tss[]" value="<%= result[6] %>">
+          <a href="<%= result[5] %>"><%= result[3] %></a><br />
+            <%= slack_markdown_processor.call(result[4])[:output].to_s.html_safe %>
+            <br />
+            <span class="small text-muted"><%= result[1] %></span>
+        </td>
+      </tr>
+    <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

@@ -1,0 +1,13 @@
+<%= render(partial: 'query_search', locals: {
+  channel_list: @channel_list,
+  user_list: @user_list,
+  reaction_list: @reaction_list
+  }
+)%>
+<div class="col-sm-6" style="float: right;">
+  <%= render(partial: 'save') %>
+</div>
+<div id="result" class="col-sm-6">
+  <h2>検索結果</h2>
+  <p>ここに検索結果が表示されるよ！</p>
+</div>

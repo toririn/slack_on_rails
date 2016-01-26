@@ -12,5 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require_tree .
+//= require bootstrap
+//= require bootstrap-material-design
+//= require vue
+//= require spin
+//= require ladda
+//= require nprogress
+//= require nprogress-turbolinks
+//= require moment
+//= require bootstrap-datetimepicker

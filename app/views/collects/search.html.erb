@@ -1,0 +1,8 @@
+<h2>Slackを検索します。</h2>
+<%= form_tag('/search', method: :post) do %>
+  <%= select_tag('slack[channel]', options_for_select([ ["channe名", "channel_id"], ["chennel名", "channel_id" ]]) ) %>
+  <%= select_tag('slack[user]', options_for_select([ ["user名", "user_id"], ["user名", "user_id" ]]) ) %>
+  <%= select_tag('slack[reaction]', options_for_select([ ["reaction名", "reaction_id"], ["reaction名", "reaction_id" ]]) ) %>
+  <%= text_field_tag('slack[keywords]') %>
+  <%= submit_tag(:submit) %>
+<% end %>
