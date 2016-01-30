@@ -1,0 +1,28 @@
+<%= render partial: 'layouts/navbar' %>
+<div style="margin-top:60px;">
+  <div class="row">
+    <div class="col-sm-2">
+      <% cache "slide", expires_in: 1.minutes, skip_digest: true do %>
+        <%= render partial: 'layouts/slidebar', locals: { channel_list: @channel_list } %>
+      <% end %>
+    </div>
+    <div class="col-sm-10">
+      <div id="error_messages">
+      </div>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<script>
+var lb = Ladda.create( document.querySelector( '.ladda-button' ));
+$('form').on('ajax:send', function() {
+  // insert the failure message inside the "#account_settings" element
+  alert("検索を開始しました。");
+  lb.start()
+});
+$('form').on('ajax:complete', function() {
+  // insert the failure message inside the "#account_settings" element
+  alert("検索が完了しました。");
+  lb.stop()
+});
+</script>

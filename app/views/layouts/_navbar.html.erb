@@ -13,9 +13,9 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
 
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-4">
         <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="icon-bar"><%= link_to("文字列で検索", controller: :slack_rails, action: :query) %></span>
+        <span class="icon-bar"><%= link_to("リンクで検索", controller: :slack_rails, action: :link) %></span>
+        <span class="icon-bar"><%= link_to("ログアウト", controller: :sessions, action: :destroy) %></span>
       </button>
 
       <!-- タイトルなどのテキスト -->
@@ -30,10 +30,13 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
       <ul class="nav navbar-nav">
         <!-- 通常のリンク -->
         <li class="active">
-          <a href="/search/query">自分で設定</a >
+          <%= link_to("文字列で検索", controller: :slack_rails, action: :query) %>
         </li>
         <li>
-          <a href="/search/link">リンクで設定</a>
+          <%= link_to("リンクで検索", controller: :slack_rails, action: :link) %>
+        </li>
+        <li>
+          <%= link_to("ログアウト", controller: :sessions, action: :destroy) %>
         </li>
         <!-- ドロップダウンのメニューも配置可能 -->
         <li class="dropdown">
@@ -41,19 +44,13 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
             <span class=""></span><span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><%= link_to("文字列で検索", controller: :slack_rails, action: :query) %></li>
+            <li><%= link_to("リンクで検索", controller: :slack_rails, action: :link) %></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><%= link_to("ログアウト", controller: :sessions, action: :destroy) %></li>
           </ul>
         </li>
-
       </ul>
-
-
     </div>
   </div>
 </nav>

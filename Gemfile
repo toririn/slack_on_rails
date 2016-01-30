@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # slack-apiを使うためのgem
 gem 'slack-api'
+# slackのOOuth用のgem
+gem 'omniauth-slack'
 # jqueryイベントが発火しなくなる問題を解決するgem
 gem 'jquery-turbolinks'
 # material-designを使う
