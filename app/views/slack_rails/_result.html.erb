@@ -8,12 +8,19 @@ $(function() {
     drop: function(e, ui){
       $(this).html(
         $(this).html() +
-        '<td class="bg-success">' +
+        '<td class="bg-success select_result">' +
         ui.draggable.html() +
+        '<a class="">削除</a>' +
         '</td>'
        );
       $('.drag').draggable({
         revert: true
+      });
+      $('.select_result').click(function(){
+        res = confirm("削除しちゃいます。いいですか？");
+        if (res == true){
+          $(this).remove();
+        }
       });
     }
   })

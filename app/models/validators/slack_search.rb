@@ -3,7 +3,7 @@ class Validators::SlackSearch < Validators::Base
 
   validates :channel, presence: true
   validates :user, presence: true
-  validates :reaction, presence: true
+  #validates :reaction, presence: true
   #validates :keywords
   #validates :current_user_id
 
