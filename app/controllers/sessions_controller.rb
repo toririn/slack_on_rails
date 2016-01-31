@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
     slack_data = request.env['omniauth.auth']
     if create_session(slack_data)
-      redirect_to search_path
+      redirect_to top_path
     else
       redirect_to root_path, notice: "Slackから拒否されちゃいました。また後でやってみてください。"
     end

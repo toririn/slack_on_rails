@@ -12,6 +12,15 @@ class Service::SlackRails
     end
   end
 
+  def self.channel_list_by(name: nil, id: nil )
+    channels = channel_list
+    if name
+      channels.select {|ch| [ch] if ch[0] =~ /#{name}/ }
+    elsif id
+      channels.find {|ch| ch[1] == id }
+    end
+  end
+
   def self.user_list
     user_list = get_user_list
     if user_list
@@ -24,15 +33,6 @@ class Service::SlackRails
   def self.user_image_list
     user_image_list = get_user_image_list.to_h
     user_image_list || []
-  end
-
-  def self.reaction_list
-    reaction_list = get_reaction_list
-    if reaction_list
-      reaction_list.uniq
-    else
-      []
-    end
   end
 
   def self.search_by_query(query)
@@ -60,6 +60,20 @@ class Service::SlackRails
   def self.channel_name_to_id(name: )
     channel_list = get_channel_list
     channel_list.find{ |ch| ch[0] == name }[1]
+  end
+
+  def self.added_reaction_chats(user_id: , reaction_type: )
+    chats = []
+    reactions = get_reactions_list(user_id)
+    reactions["items"].each.with_index do |item, idx|
+      item["message"]["reactions"].each do |reaction|
+        if reaction["name"] == reaction_type
+          f = reactions["items"][idx]["message"]
+          chats << {user: f["user"], text: f["text"], ts: f["ts"], permalink: f["permalink"] }
+        end
+      end
+    end
+    chats
   end
 
   private
@@ -93,11 +107,8 @@ class Service::SlackRails
     end
   end
 
-  def self.get_reaction_list
+  def self.get_reactions_list(user_id)
     client = set_slack_client
-    items_with_reactions = client.reactions_list
-    items_with_reactions["items"].map do |item|
-      [item["message"]["reactions"].first["name"], item["message"]["reactions"].first["name"]]
-    end
+    client.reactions_list(user: user_id, count: 20)
   end
 end

@@ -2,6 +2,11 @@ class SlackRailsController < SlackAppController
   before_action :set_user_image_list, only: [:search, :search_link]
   before_action :set_query_select_list, only: [:index, :query, :channel, :save]
 
+  def top
+    @user_name = session[:user]["name"]
+    @eyes_chats = Service::SlackRails.added_reaction_chats(user_id: session[:user]["id"], reaction_type: SlackReaction::EYES)
+  end
+
   def index
   end
 
@@ -103,7 +108,6 @@ class SlackRailsController < SlackAppController
   end
 
   def set_query_select_list
-    @reaction_list = Service::SlackRails.reaction_list
     set_user_list
     set_channel_list
   end
