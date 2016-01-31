@@ -7,7 +7,7 @@ module TopHelper
             elsif current_time >= today_time + (12 * 60 * 60)
               "こんにちは"
             elsif current_time >= today_time + (6 * 60 * 60)
-              "おはようございます。"
+              "おはようございます"
             else
               "ひゅ〜どろろろ"
             end
