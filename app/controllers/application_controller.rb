@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   Fluent::Logger::FluentLogger.open(nil, host: "localhost", port: 24224)
   before_action :authenticate_user!
   before_action :fluent_post if Rails.env.production?
+  include ErrorHandlers
 
   def authenticate_user!
     return redirect_to root_path if session[:user].blank?

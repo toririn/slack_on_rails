@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get  'auth/:provider/callback' => 'sessions#create'
   get  'logout' => 'sessions#destroy'
   get  'top' => 'slack_rails#top'
+  get '*anything' => 'errors#routing'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
