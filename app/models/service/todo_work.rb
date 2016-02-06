@@ -35,7 +35,7 @@ class Service::TodoWork
   def result_messages
     if @result_messages.nil?
       client = set_slack_client
-      @result_messages = client.search_messages(query: query)
+      @result_messages = client.search_messages(query: query, count: 1000)
     end
     @result_messages
   end
