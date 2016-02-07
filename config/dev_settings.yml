@@ -1,0 +1,19 @@
+defaults: &defaults
+  DB_USERNAME: db_root
+  DB_PASSWORD: db_root
+  DB_SOCKET: /var/run/mysqld/mysqld.sock
+  SLACK_API_TOKEN: api_token
+  SLACK_CLIENT_ID: client_id
+  SLACK_SECRET: secret_key
+  SLACK_URL: https://foo.slack.com
+  SLACK_ON_RAILS_TOKEN: token
+  ROOT_PATH: ""
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
