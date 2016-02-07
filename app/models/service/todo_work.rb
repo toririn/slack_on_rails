@@ -25,7 +25,7 @@ class Service::TodoWork
   def task_list
     list_by_task
   end
-  
+
   def book_list
     list_by_book
   end
@@ -72,8 +72,7 @@ class Service::TodoWork
   end
 
   def set_slack_client
-    Slack.configure { |config| config.token = SLACK_API_TOKEN }
-    Slack.client
+    SLACK
   end
 
   def today_ts

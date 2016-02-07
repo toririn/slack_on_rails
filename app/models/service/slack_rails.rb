@@ -79,8 +79,7 @@ class Service::SlackRails
   private
 
   def self.set_slack_client
-    Slack.configure { |config| config.token = SLACK_API_TOKEN }
-    Slack.client
+    SLACK
   end
 
   def self.get_channel_list
