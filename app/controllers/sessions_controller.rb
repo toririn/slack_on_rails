@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!
   def index
-    reset_session
+    redirect_to top_path if session[:user].try(:[], "token") == SLACK_ON_RAILS_TOKEN
   end
 
   def create
@@ -16,9 +16,6 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     redirect_to root_path, notice: "ログアウトが完了しました。さようなら！"
-  end
-
-  def oauth_failure
   end
 
   private
