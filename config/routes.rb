@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "#{path}save_lodge" => 'slack_rails#save_lodge'
   root "#{path}sessions#index"
   post "#{path}auth/:provider/callback" => 'sessions#create'
+  post "#{path}login" => 'sessions#login'
   get  "#{path}auth/:provider/callback" => 'sessions#create'
   get  "#{path}logout" => 'sessions#destroy'
   get  "#{path}top" => 'slack_rails#top'

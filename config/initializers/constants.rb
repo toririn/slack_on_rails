@@ -10,6 +10,10 @@ SLACK_ON_RAILS_TOKEN = ENV['SLACK_ON_RAILS_TOKEN']
 SLACK_ON_RAILS_TOKEN = ENV['SLACK_ON_RAILS_TOKEN']
 ROOT_PATH = ENV['ROOT_PATH']
 
+module Sessions
+  HOLDING_PERIOD = 10
+end
+
 module SlackReaction
   EYES = "eyes"
   LICON = "heart"
