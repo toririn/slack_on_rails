@@ -2,7 +2,17 @@ require 'slack'
 class Service::SlackRails
   include ActiveModel::Model
 
-  def self.channel_list
+  attr_accessor(
+    :api_token
+  )
+
+  def initialize(token)
+    api_token = token
+    Slack.configure { |config| config.token = api_token }
+    @slack = Slack.client
+  end
+
+  def channel_list
     channel_list = get_channel_list
     if channel_list
       #channel名で並び替える
@@ -12,7 +22,7 @@ class Service::SlackRails
     end
   end
 
-  def self.channel_list_by(name: nil, id: nil )
+  def channel_list_by(name: nil, id: nil )
     channels = channel_list
     if name
       channels.select {|ch| [ch] if ch[0] =~ /#{name}/ }
@@ -21,7 +31,7 @@ class Service::SlackRails
     end
   end
 
-  def self.user_list
+  def user_list
     user_list = get_user_list
     if user_list
       user_list
@@ -30,17 +40,17 @@ class Service::SlackRails
     end
   end
 
-  def self.user_image_list
+  def user_image_list
     user_image_list = get_user_image_list.to_h
     user_image_list || []
   end
 
-  def self.search_by_query(query)
+  def search_by_query(query)
     client = set_slack_client
     client.search_messages(query: query, count: 350)
   end
 
-  def self.search_by_link(query, ts="")
+  def search_by_link(query, ts="")
     results = search_by_query(query)
     ts_d = ts.delete("p")
     results["messages"]["matches"] = results["messages"]["matches"].map do |result|
@@ -51,18 +61,18 @@ class Service::SlackRails
     results
   end
 
-  def self.delete_by_chat_in_channel(ts: , channel_id:)
+  def delete_by_chat_in_channel(ts: , channel_id:)
     client = set_slack_client
     result = client.chat_delete(ts: ts, channel: channel_id)
     result["ok"]
   end
 
-  def self.channel_name_to_id(name: )
+  def channel_name_to_id(name: )
     channel_list = get_channel_list
     channel_list.find{ |ch| ch[0] == name }[1]
   end
 
-  def self.added_reaction_chats(user_id: , reaction_type: )
+  def added_reaction_chats(user_id: , reaction_type: )
     chats = []
     reactions = get_reactions_list(user_id)
     reactions["items"].each.with_index do |item, idx|
@@ -78,11 +88,13 @@ class Service::SlackRails
 
   private
 
-  def self.set_slack_client
-    SLACK
+  def set_slack_client
+    return @slack if @slack.present?
+    Slack.configure { |config| config.token = api_token }
+    @slack = Slack.client
   end
 
-  def self.get_channel_list
+  def get_channel_list
     client = set_slack_client
     channels = client.channels_list
     channels["channels"].map do |channel|
@@ -90,7 +102,7 @@ class Service::SlackRails
     end
   end
 
-  def self.get_user_list
+  def get_user_list
     client = set_slack_client
     users = client.users_list
     users["members"].map do |user|
@@ -98,7 +110,7 @@ class Service::SlackRails
     end
   end
 
-  def self.get_user_image_list
+  def get_user_image_list
     client = set_slack_client
     users = client.users_list
     users["members"].map do |user|
@@ -106,7 +118,7 @@ class Service::SlackRails
     end
   end
 
-  def self.get_reactions_list(user_id)
+  def get_reactions_list(user_id)
     client = set_slack_client
     client.reactions_list(user: user_id, count: 20)
   end

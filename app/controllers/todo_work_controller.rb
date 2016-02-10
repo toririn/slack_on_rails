@@ -26,8 +26,8 @@ class TodoWorkController < SlackAppController
   end
 
   def delete_task
-    channel_id = Service::SlackRails.channel_name_to_id(name: params[:channel])
-    @result_delete = Service::SlackRails.delete_by_chat_in_channel(ts: params[:ts], channel_id: channel_id)
+    channel_id = slack.channel_name_to_id(name: params[:channel])
+    @result_delete = slack.delete_by_chat_in_channel(ts: params[:ts], channel_id: channel_id)
     set_task_list
   end
 

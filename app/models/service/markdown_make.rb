@@ -94,10 +94,10 @@ class Service::MarkdownMake
   end
 
   def self.set_channel_list
-    @@channel_list ||= Service::SlackRails.channel_list
+    @@channel_list ||= slack.channel_list
   end
 
   def self.set_user_list
-    @@user_list ||= Service::SlackRails.user_list
+    @@user_list ||= slack.user_list
   end
 end
