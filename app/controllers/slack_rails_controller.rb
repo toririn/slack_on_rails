@@ -4,7 +4,7 @@ class SlackRailsController < SlackAppController
 
   def top
     @user_name = session[:user]["name"]
-    @eyes_chats = slack.added_reaction_chats(user_id: session[:user]["id"], reaction_type: SlackReaction::EYES)
+    @eyes_chats = slack.search_by_reaction_for_chat(user_id: session[:user]["id"], reaction_type: SlackReaction::EYES)
   end
 
   def index
@@ -21,7 +21,7 @@ class SlackRailsController < SlackAppController
     return render if @validate.has_error?
 
     parameters = set_parameters
-    @results = slack.search_by_query(parameters.query)
+    @results = slack.search_by_query_for_chat(parameters.query)
   end
 
   def search_link
@@ -29,7 +29,7 @@ class SlackRailsController < SlackAppController
     return render 'search' if @validate.has_error?
 
     parameters = set_link_parameters
-    @results = slack.search_by_link(parameters.query, parameters.ts)
+    @results = slack.search_by_link_for_chat(query: parameters.query, ts: parameters.ts)
     render 'search'
   end
 

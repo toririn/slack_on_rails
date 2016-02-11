@@ -29,5 +29,8 @@ module Src
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.time_zone = 'Tokyo'
+
+    # 新規作成ディレクトリの読み込み
+    config.autoload_paths += %W(#{config.root}/app/services)
   end
 end

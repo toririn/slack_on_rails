@@ -14,6 +14,12 @@ module Sessions
   HOLDING_PERIOD = 10
 end
 
+module SlackRails
+  # チャット検索の最大取得結果数
+  SEARCH_MAX_COUNT = 100
+  # （トップページ）チェック項目の最大取得数
+  CHECK_MAX_COUNT = 20
+end
 module SlackReaction
   EYES = "eyes"
   LICON = "heart"

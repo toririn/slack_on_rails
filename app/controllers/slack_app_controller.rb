@@ -29,7 +29,7 @@ class SlackAppController < ApplicationController
   end
 
   def slack
-    @slack ||=Service::SlackRails.new(session[:token])
+    @slack ||=SlackRails::Application.new(session[:token])
   end
 
 end
