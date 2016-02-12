@@ -1,10 +1,10 @@
 <% if @validate.errors.present? %>
   $('#error_messages').html("<%= @validate.errors.full_messages.join("\n") %>")
   $('#result').html("")
-<% elsif extract_for_table(@results).empty? %>
+<% elsif @results.empty? %>
   $('#error_messages').html("<%=j br(RESULTS_EMPTY_MESSAGE) %>")
   $('#result').html("")
-<% else @results %>
+<% else %>
   $('#result').html('<%=j render partial: 'result', locals: {
     results: @results,
     user_image_list: @user_image_list,

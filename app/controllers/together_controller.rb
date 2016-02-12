@@ -1,4 +1,5 @@
-class SlackRailsController < SlackAppController
+class TogetherController < SlackAppController
+
   before_action :set_user_image_list, only: [:search, :search_link]
   before_action :set_query_select_list, only: [:index, :query, :channel, :save]
 
@@ -21,7 +22,8 @@ class SlackRailsController < SlackAppController
     return render if @validate.has_error?
 
     parameters = set_parameters
-    @results = slack.search_by_query_for_chat(parameters.query)
+    together = Together.new(api_token: session[:token], query: parameters.query, search_type: SlackRails::SearchType::QUERY)
+    @results = together.search.results_extracted
   end
 
   def search_link
@@ -29,7 +31,9 @@ class SlackRailsController < SlackAppController
     return render 'search' if @validate.has_error?
 
     parameters = set_link_parameters
-    @results = slack.search_by_link_for_chat(query: parameters.query, ts: parameters.ts)
+    together = Together.new(api_token: session[:token], query: parameters.query, ts: parameters.ts, search_type: SlackRails::SearchType::LINK)
+    @results = together.search.results_extracted
+
     render 'search'
   end
 

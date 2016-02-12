@@ -13,14 +13,14 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
 
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-4">
         <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"><%= link_to("マイページ", controller: :slack_rails, action: :top) %></span>
-        <span class="icon-bar"><%= link_to("文字列で検索", controller: :slack_rails, action: :query) %></span>
-        <span class="icon-bar"><%= link_to("リンクで検索", controller: :slack_rails, action: :link) %></span>
+        <span class="icon-bar"><%= link_to("マイページ", controller: :together, action: :top) %></span>
+        <span class="icon-bar"><%= link_to("文字列で検索", controller: :together, action: :query) %></span>
+        <span class="icon-bar"><%= link_to("リンクで検索", controller: :together, action: :link) %></span>
         <span class="icon-bar"><%= link_to("ログアウト", controller: :sessions, action: :destroy) %></span>
       </button>
 
       <!-- タイトルなどのテキスト -->
-      <%= link_to("Let's Slack Search!", { controller: :slack_rails, action: :top }, { class: "navbar-brand" }) %>
+      <%= link_to("Let's Slack Search!", { controller: :together, action: :top }, { class: "navbar-brand" }) %>
 
     </div>
 
@@ -31,13 +31,13 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
       <ul class="nav navbar-nav">
         <!-- 通常のリンク -->
         <li class="active">
-          <%= link_to("マイページ", controller: :slack_rails, action: :top) %>
+          <%= link_to("マイページ", controller: :together, action: :top) %>
         </li>
         <li >
-          <%= link_to("文字列で検索", controller: :slack_rails, action: :query) %>
+          <%= link_to("文字列で検索", controller: :together, action: :query) %>
         </li>
         <li>
-          <%= link_to("リンクで検索", controller: :slack_rails, action: :link) %>
+          <%= link_to("リンクで検索", controller: :together, action: :link) %>
         </li>
         <li>
           <%= link_to("ログアウト", controller: :sessions, action: :destroy) %>
@@ -48,9 +48,9 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
             <span class=""></span><span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to("マイページ", controller: :slack_rails, action: :top) %></li>
-            <li><%= link_to("文字列で検索", controller: :slack_rails, action: :query) %></li>
-            <li><%= link_to("リンクで検索", controller: :slack_rails, action: :link) %></li>
+            <li><%= link_to("マイページ", controller: :together, action: :top) %></li>
+            <li><%= link_to("文字列で検索", controller: :together, action: :query) %></li>
+            <li><%= link_to("リンクで検索", controller: :together, action: :link) %></li>
             <li class="divider"></li>
             <li><%= link_to("ログアウト", controller: :sessions, action: :destroy) %></li>
           </ul>

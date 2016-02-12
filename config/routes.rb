@@ -1,24 +1,24 @@
 Rails.application.routes.draw do
   path = ROOT_PATH
-  get "#{path}search" => 'slack_rails#index'
+  get "#{path}search" => 'together#index'
   # todo_workのroute
   post "#{path}todo_work/:channel/delete_task" => 'todo_work#delete_task'
   get "#{path}todo_work/:channel" => 'todo_work#index'
   post "#{path}todo_work/:channel" => 'todo_work#modify'
   # searchのroute
-  get "#{path}search/query" => 'slack_rails#query'
-  get "#{path}search/link" => 'slack_rails#link'
-  post "#{path}search" => 'slack_rails#search'
-  post "#{path}search_link" => 'slack_rails#search_link'
-  get "#{path}search/:channel" => 'slack_rails#channel'
-  post "#{path}save" => 'slack_rails#save'
-  post "#{path}save_lodge" => 'slack_rails#save_lodge'
+  get "#{path}search/query" => 'together#query'
+  get "#{path}search/link" => 'together#link'
+  post "#{path}search" => 'together#search'
+  post "#{path}search_link" => 'together#search_link'
+  get "#{path}search/:channel" => 'together#channel'
+  post "#{path}save" => 'together#save'
+  post "#{path}save_lodge" => 'together#save_lodge'
   root "#{path}sessions#index"
   post "#{path}auth/:provider/callback" => 'sessions#create'
   post "#{path}login" => 'sessions#login'
   get  "#{path}auth/:provider/callback" => 'sessions#create'
   get  "#{path}logout" => 'sessions#destroy'
-  get  "#{path}top" => 'slack_rails#top'
+  get  "#{path}top" => 'together#top'
   get "*anything" => 'errors#routing'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

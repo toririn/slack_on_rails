@@ -19,6 +19,11 @@ module SlackRails
   SEARCH_MAX_COUNT = 100
   # （トップページ）チェック項目の最大取得数
   CHECK_MAX_COUNT = 20
+  module SearchType
+    LINK = "link"
+    QUERY = "query"
+    REACTION = "reaction"
+  end
 end
 module SlackReaction
   EYES = "eyes"
