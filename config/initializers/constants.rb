@@ -29,3 +29,16 @@ module SlackReaction
   EYES = "eyes"
   LICON = "heart"
 end
+
+module TodoManagements
+  module Keywords
+    ALL_SEARCH = %w(TASK BOOK)
+    TASK = "TASK"
+    TODO = "TODO"
+    DO = "DO"
+    DONE = "DONE"
+    PEND = "PEND"
+    SAY = "SAY"
+    BOOK = "BOOK"
+  end
+end

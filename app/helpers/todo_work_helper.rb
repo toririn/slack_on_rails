@@ -6,7 +6,7 @@ module TodoWorkHelper
   end
 
   def work_by(chat)
-    chat.slice(chat.index("::")+2, chat.size)
+    chat.slice(chat.index("::")+2, chat.size) rescue ""
   end
 
   def doing_time(done_work, do_work_list)
@@ -20,5 +20,7 @@ module TodoWorkHelper
       end
     end
     time
+  rescue => ex
+    ""
   end
 end

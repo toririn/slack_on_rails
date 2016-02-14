@@ -16,9 +16,9 @@
         <%= idx %><br />
       </td>
       <td >
-        <%= work_by(@slack_markdown_processor.call(list[0])[:output].to_s.html_safe) %>
+        <%= work_by(@slack_markdown_processor.call(list[:text])[:output].to_s.html_safe) %>
         <br />
-        <span class="small text-muted"><%= time_by(list[1]) %></span>
+        <span class="small text-muted"><%= time_by(list[:ts]) %></span>
       </td>
     </tr>
   <% end %>

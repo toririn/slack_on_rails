@@ -1,6 +1,6 @@
 <h2>
   【<%= @channel_name %>】の今日のタスク状況
-  <a class="small" href="/todo_work/<%= @channel_name %>">更新する</a>
+  <a class="small" href="/todo_management/<%= @channel_name %>">更新する</a>
 </h2>
 <div id="task_list" class="col-sm-12">
   <%= render(partial: 'task_list', locals: { task_list: @task_list } ) %>
@@ -21,7 +21,7 @@
   <%= render(partial: 'book_list', locals: { book_list: @book_list } ) %>
 </div>
 <div class="col-sm-4 pull-right">
-<%= form_tag("/todo_work/#{@channel_name}" , name: "todo_date_form") do %>
+<%= form_tag("/todo_management/#{@channel_name}" , name: "todo_date_form") do %>
     過去のタスク状況を見る。
     <%= text_field(:selected_day, '', class: 'form-control datetimepicker', placeholder: '日付を入力してね') %>
     <%= submit_tag('表示', class: "btn btn-primary ladda-button", "data-style" => "contract") %>

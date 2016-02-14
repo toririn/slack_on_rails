@@ -1,6 +1,6 @@
 <% if todo_list.present? %>
   <h2>検索結果</h2>
-  <%= form_tag('/todo_work/<%= @channel_name %>', method: :post) do %>
+  <%= form_tag('/todo_management/<%= @channel_name %>', method: :post) do %>
     <%= submit_tag('更新', class: "btn btn-info", name: "modify") %>
     <table class = "table table-bordered table-hover table-condensed">
       <thead>

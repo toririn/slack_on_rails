@@ -1,5 +1,8 @@
 class Validators::TodoWork < Validators::Base
-  include Service::Base::TodoWork
+  attr_accessor(
+    :channel,
+    :selected_day,
+  )
 
   validates :channel, presence: true
 

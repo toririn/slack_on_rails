@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   path = ROOT_PATH
   get "#{path}search" => 'together#index'
-  # todo_workのroute
-  post "#{path}todo_work/:channel/delete_task" => 'todo_work#delete_task'
-  get "#{path}todo_work/:channel" => 'todo_work#index'
-  post "#{path}todo_work/:channel" => 'todo_work#modify'
+  # todo_managementのroute
+  post "#{path}todo_management/:channel/delete_task" => 'todo_managements#delete_task'
+  get "#{path}todo_management/:channel" => 'todo_managements#index'
+  post "#{path}todo_management/:channel" => 'todo_managements#modify'
   # searchのroute
   get "#{path}search/query" => 'together#query'
   get "#{path}search/link" => 'together#link'
