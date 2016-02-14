@@ -1,5 +1,7 @@
-class Parameters::SlackSearchLink
-  include Service::Base::SlackLink
+class TogetherLinkParameter
+  attr_accessor(
+    :link,
+  )
 
   def query
     "in:#{channel}"

@@ -1,5 +1,10 @@
-class Parameters::SlackSearch
-  include Service::Base::Slack
+class TogetherQueryParameter
+  attr_accessor(
+    :channel,
+    :user,
+    :reaction,
+    :keywords,
+  )
 
   def query
     "#{query_keywords} #{query_channel} #{query_user}"
@@ -13,10 +18,6 @@ class Parameters::SlackSearch
     else
       keywords
     end
-  end
-
-  def split_keywords
-    keywords.split(/ |　/)
   end
 
   def query_channel
@@ -42,6 +43,8 @@ class Parameters::SlackSearch
       "from:#{user}"
     end
   end
+
+  def split_keywords
+    keywords.split(/ |　/)
+  end
 end
-
-

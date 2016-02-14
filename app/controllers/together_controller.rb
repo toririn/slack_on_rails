@@ -64,6 +64,16 @@ class TogetherController < SlackAppController
     lodge_support.output_date('markdown')
   end
 
+  def set_user_image_list
+    @user_image_list = slack.user_image_list
+  end
+
+
+  def set_query_select_list
+    set_user_list
+    set_channel_list
+  end
+
   def search_params
     params.require(:slack).permit(:channel, :user, :reaction, :keywords)
   end
@@ -77,28 +87,17 @@ class TogetherController < SlackAppController
   end
 
   def set_parameters
-    parameters = Parameters::SlackSearch.new
-    parameters.channel = params[:slack][:channel]
-    parameters.user = params[:slack][:user]
-    parameters.reaction = params[:slack][:reaction]
-    parameters.keywords = params[:slack][:keywords]
-    parameters
+    TogetherQueryParameter.new.tap do |p|
+      p.channel = params[:slack][:channel]
+      p.user = params[:slack][:user]
+      p.reaction = params[:slack][:reaction]
+      p.keywords = params[:slack][:keywords]
+    end
   end
 
   def set_link_parameters
-    parameters = Parameters::SlackSearchLink.new
-    parameters.link = params[:slack][:link]
-    parameters
+    TogetherLinkParameter.new.tap do |p|
+      p.link = params[:slack][:link]
+    end
   end
-
-  def set_user_image_list
-    @user_image_list = slack.user_image_list
-  end
-
-
-  def set_query_select_list
-    set_user_list
-    set_channel_list
-  end
-
 end
