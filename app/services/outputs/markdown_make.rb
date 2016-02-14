@@ -1,4 +1,4 @@
-class Service::MarkdownMake
+class Outputs::MarkdownMake
 
   def self.user_info(name, image_url)
     image_markdown = "![#{name}](#{image_url} \"#{name}\")"

@@ -59,8 +59,7 @@ class TogetherController < SlackAppController
   end
 
   def output_for_lodge
-    #TODO: lodgeへの出力処理
-    lodge_support = Service::LodgeSupport.new(set_lodge_params)
+    lodge_support = Outputs::LodgeSupport.new(set_lodge_params)
     lodge_support.output_date('markdown')
   end
 

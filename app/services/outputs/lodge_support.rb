@@ -1,6 +1,14 @@
-class Service::LodgeSupport
-  include Service::Base::LodgeSupport
+class Outputs::LodgeSupport
   include ActiveModel::Model
+
+  attr_accessor(
+    :images,
+    :names,
+    :texts,
+    :channels,
+    :links,
+    :tss,
+  )
 
   # ユーザにダウンロードさせる文字列（ファイル）を返すメソッド
   def output_date(type)
@@ -44,11 +52,11 @@ class Service::LodgeSupport
   # ユーザにダウンロードさせるmarkdown記法でコーディングされた文字列を返す
   def output_markdown
     string = Array.new
-    string.push(Service::MarkdownMake.title("記事のタイトル")+ "\n"*2)
+    string.push(Outputs::MarkdownMake.title("記事のタイトル")+ "\n"*2)
     join_params.each do |params|
-      user_info = Service::MarkdownMake.user_info(params[2], params[1])
-      text = Service::MarkdownMake.text(params[0])
-      chat_info = Service::MarkdownMake.chat_info(params[3], params[5], params[4])
+      user_info = Outputs::MarkdownMake.user_info(params[2], params[1])
+      text = Outputs::MarkdownMake.text(params[0])
+      chat_info = Outputs::MarkdownMake.chat_info(params[3], params[5], params[4])
       string.push(user_info + "\n"*2 + text + "\n"*2 + chat_info + "\n"*2)
     end
     string
