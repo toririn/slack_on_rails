@@ -5,30 +5,19 @@ class TodoManagementsController < SlackAppController
     @validate = Validators::TodoWork.new(params.permit(:channel))
     return render if @validate.has_error?
 
-    todo_management.search
-    @todo_list = todo_management.results_extracted(todo_list)
-    @do_list = todo_management.results_extracted(do_list)
-    @done_list = todo_management.results_extracted(done_list)
-    @comment_list = todo_management.results_extracted(comment_list)
-    @book_list = todo_management.results_extracted(book_list)
-    set_task_list
+    set_todo_management_list
   end
 
   def modify
     @channel_name = params[:channel]
 
-    todo_management.search
-    @todo_list = todo_management.results_extracted(todo_list)
-    @do_list = todo_management.results_extracted(do_list)
-    @done_list = todo_management.results_extracted(done_list)
-    @comment_list = todo_management.results_extracted(comment_list)
-    @book_list = todo_management.results_extracted(book_list)
-    set_task_list
-    render action: 'index'
+    set_todo_management_list
+    render action: :index
   end
 
   def delete_task
-    channel_id = slack.channel_name_to_id(name: params[:channel])
+    @channel_name = params[:channel]
+    channel_id = slack.channel_name_to_id(name: @channel_name)
     @result_delete = slack.delete_by_chat_in_channel(ts: params[:ts], channel_id: channel_id)
     set_task_list
   end
@@ -42,40 +31,46 @@ class TodoManagementsController < SlackAppController
   def set_todo_management
     todo_management = TodoManagement.new(api_token: session[:token])
     # TODO parameterクラスを使用する
-    todo_management.query = "in:#{channel_name}"
+    todo_management.query = "in:#{@channel_name}"
     todo_management.selected_day = params[:selected_day][0] if params.include?(:selected_day)
     todo_management
   end
 
-  def channel_name
-    @channel_name ||= params[:channel]
+  def set_todo_management_list
+    todo_management.search
+    @todo_list = todo_management.results_extracted(todo)
+    @do_list = todo_management.results_extracted(doing)
+    @done_list = todo_management.results_extracted(done)
+    @comment_list = todo_management.results_extracted(comment)
+    @book_list = todo_management.results_extracted(book)
+    set_task_list
   end
 
   def set_task_list
-    @task_list = todo_management.results_extracted(TodoManagements::Keywords::TASK)
+    @task_list = todo_management.results_extracted(task)
   end
 
-  def todo_list
+  def todo
     TodoManagements::Keywords::TODO
   end
 
-  def do_list
+  def doing
     TodoManagements::Keywords::DO
   end
 
-  def done_list
+  def done
     TodoManagements::Keywords::DONE
   end
 
-  def comment_list
+  def comment
     TodoManagements::Keywords::SAY
   end
 
-  def book_list
+  def book
     TodoManagements::Keywords::BOOK
   end
 
-  def task_list
+  def task
     TodoManagements::Keywords::TASK
   end
 

@@ -41,4 +41,6 @@ module TodoManagements
     SAY = "SAY"
     BOOK = "BOOK"
   end
+  # タスク管理での過去のチャット取得件数
+  SEARCH_MAX_COUNT = 1000
 end

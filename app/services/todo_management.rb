@@ -27,7 +27,7 @@ class TodoManagement
   private
 
   def search_by_query
-    @results = slack.search_by_query_for_chat(query)
+    @results = slack.search_by_query_for_chat(query, TodoManagements::SEARCH_MAX_COUNT )
   end
 
   def results

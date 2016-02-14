@@ -3,8 +3,8 @@ module SlackRails::Module::Search
 
   # Chat検索
 
-  def search_by_query_for_chat(query)
-    slack_client.search_messages(query: query, count: SlackRails::SEARCH_MAX_COUNT)
+  def search_by_query_for_chat(query, count = SlackRails::SEARCH_MAX_COUNT)
+    slack_client.search_messages(query: query, count: count)
   rescue => ex
     []
   end
@@ -46,7 +46,6 @@ module SlackRails::Module::Search
   rescue => ex
     []
   end
-  
 
   def search_by_channel_for_id(id)
     channel_list = get_channel_list
