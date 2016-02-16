@@ -20,7 +20,7 @@ SLACK_CHANNEL_LIST = set_channel_list
 SLACK_USER_LIST = set_user_list
 
 SLACK_MARKDOWN_PROCESSOR = SlackMarkdown::Processor.new(
-  asset_root: 'https://assets.github.com/images/icons/',
+  asset_root: SlackRails::IMAGE_ROOT_PATH,
   on_slack_user_id: -> (uid) {
     user_list = SLACK_USER_LIST
     user_name = user_list.find {|user| user[1] == uid }[0]

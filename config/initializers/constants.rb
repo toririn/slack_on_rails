@@ -19,6 +19,8 @@ module SlackRails
   SEARCH_MAX_COUNT = 100
   # （トップページ）チェック項目の最大取得数
   CHECK_MAX_COUNT = 20
+  # 画像ファイルのパス
+  IMAGE_ROOT_PATH = "/images"
   module SearchType
     LINK = "link"
     QUERY = "query"
