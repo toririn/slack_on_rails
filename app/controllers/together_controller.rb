@@ -21,7 +21,7 @@ class TogetherController < SlackAppController
     @validate = Validators::SlackSearch.new(search_params)
     return render if @validate.has_error?
 
-    parameters = set_parameters
+    parameters = set_query_parameters
     together = Together.new(api_token: session[:token], query: parameters.query, search_type: SlackRails::SearchType::QUERY)
     @results = together.search.results_extracted
   end
@@ -34,11 +34,7 @@ class TogetherController < SlackAppController
     together = Together.new(api_token: session[:token], query: parameters.query, ts: parameters.ts, search_type: SlackRails::SearchType::LINK)
     @results = together.search.results_extracted
 
-    render 'search'
-  end
-
-  def channel
-    @channel = params[:channel]
+    render :search
   end
 
   def save
@@ -49,7 +45,6 @@ class TogetherController < SlackAppController
       filename = Time.new.strftime("%Y%m%d%H%M%S") + ".txt"
     end
     send_data(date, type: 'text/csv', filename: filename)
-#    return render action: 'index'
   end
 
   private
@@ -85,7 +80,7 @@ class TogetherController < SlackAppController
     params.permit(images: [], names: [], texts: [], channels: [], links: [], tss: [])
   end
 
-  def set_parameters
+  def set_query_parameters
     TogetherQueryParameter.new.tap do |p|
       p.channel = params[:slack][:channel]
       p.user = params[:slack][:user]
