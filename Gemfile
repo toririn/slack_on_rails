@@ -54,6 +54,8 @@ gem 'bootstrap3-datetimepicker-rails'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'fluent-logger'
 
+# 絵文字のセット
+gem 'gemoji'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
