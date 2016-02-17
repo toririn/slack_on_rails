@@ -3,17 +3,11 @@ module SlackRails::Module::Base
   private
 
   def get_channel_list
-    channels = slack_client.channels_list
-    channels["channels"].map do |channel|
-      [channel["name"], channel["id"]]
-    end
+    SLACK_CHANNEL_LIST
   end
 
   def get_user_list
-    users = slack_client.users_list
-    users["members"].map do |user|
-      [user["name"], user["id"]]
-    end
+    SLACK_USER_LIST
   end
 
   def get_user_image_list

@@ -5,7 +5,7 @@ module SlackRails::Module::Convert
     result = "missing"
     if channel
     channel_list = get_channel_list
-    result = channel_list.find{ |ch| ch[0] == name }[1]
+    result = channel_list.find{ |ch| ch[0] == channel }[1]
     elsif user
     elsif team
     end
