@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "#{path}search/link" => 'together#link'
   post "#{path}search" => 'together#search'
   post "#{path}search_link" => 'together#search_link'
-  get "#{path}search/:channel" => 'together#channel'
+  post "#{path}search/:channel" => 'together#channel'
   post "#{path}save" => 'together#save'
   post "#{path}save_lodge" => 'together#save_lodge'
   root "#{path}sessions#index"
