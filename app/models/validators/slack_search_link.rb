@@ -1,5 +1,7 @@
 class Validators::SlackSearchLink < Validators::Base
-  include Service::Base::SlackLink
+  attr_accessor(
+    :link,
+  )
 
   validates :link, presence: true, format: URI::regexp(%w(http https))
 
