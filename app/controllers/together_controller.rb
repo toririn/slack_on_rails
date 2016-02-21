@@ -14,6 +14,10 @@ class TogetherController < SlackAppController
   def query
   end
 
+  def channel
+    @channel = params[:channel]
+  end
+
   def link
   end
 
