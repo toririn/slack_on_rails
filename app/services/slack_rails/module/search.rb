@@ -12,9 +12,15 @@ module SlackRails::Module::Search
   def search_by_link_for_chat(query: , ts: "")
     results = search_by_query_for_chat(query)
     ts_d = ts.delete("p")
+    count = 0
     results["messages"]["matches"] = results["messages"]["matches"].map do |result|
       if result["ts"].delete(".") >= ts_d
         result
+        count++
+      end
+
+      if count == 100
+        break
       end
     end.compact
     results
