@@ -1,5 +1,5 @@
 require 'slack'
-Slack.configure { |config| config.token = SLACK_API_TOKEN }
+Slack.configure { |config| config.token = Constants::SLACK_API_TOKEN }
 SLACK_OWNER = Slack.client
 def set_channel_list
   channels = SLACK_OWNER.channels_list
@@ -20,11 +20,11 @@ SLACK_CHANNEL_LIST = set_channel_list
 SLACK_USER_LIST = set_user_list
 
 SLACK_MARKDOWN_PROCESSOR = SlackMarkdown::Processor.new(
-  asset_root: SlackRails::IMAGE_ROOT_PATH,
+  asset_root: Constants::SlackRails::IMAGE_ROOT_PATH,
   on_slack_user_id: -> (uid) {
     user_list = SLACK_USER_LIST
     user_name = user_list.find {|user| user[1] == uid }[0]
-    return {url: "#{TEAM_DIRECTORY_URL}/#{user_name}", text: user_name }
+    return {url: "#{Constants::TEAM_DIRECTORY_URL}/#{user_name}", text: user_name }
   },
   on_slack_channel_id: -> (uid){
     channel_list = SLACK_CHANNEL_LIST

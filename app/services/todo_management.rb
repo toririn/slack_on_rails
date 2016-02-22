@@ -17,7 +17,7 @@ class TodoManagement
     return [] if results.blank?
 
     s_keyword = keyword.to_s
-    if TodoManagements::Keywords::ALL_SEARCH.include? s_keyword
+    if Constants::TodoManagements::Keywords::ALL_SEARCH.include? s_keyword
       results_all_ts_by(s_keyword)
     else
       results_by(s_keyword)
@@ -27,7 +27,7 @@ class TodoManagement
   private
 
   def search_by_query
-    @results = slack.search_by_query_for_chat(query, TodoManagements::SEARCH_MAX_COUNT )
+    @results = slack.search_by_query_for_chat(query, Constants::TodoManagements::SEARCH_MAX_COUNT )
   end
 
   def results

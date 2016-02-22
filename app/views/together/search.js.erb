@@ -2,7 +2,7 @@
   $('#error_messages').html("<%= @validate.errors.full_messages.join("\n") %>")
   $('#result').html("")
 <% elsif @results.empty? %>
-  $('#error_messages').html("<%=j br(RESULTS_EMPTY_MESSAGE) %>")
+  $('#error_messages').html("<%=j br(Constants::RESULTS_EMPTY_MESSAGE) %>")
   $('#result').html("")
 <% else %>
   $('#result').html('<%=j render partial: 'result', locals: {

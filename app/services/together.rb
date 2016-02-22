@@ -10,9 +10,9 @@ class Together
 
   def search
     case search_type
-    when SlackRails::SearchType::LINK
+    when Constants::SlackRails::SearchTypes::LINK
       search_by_link
-    when SlackRails::SearchType::QUERY
+    when Constants::SlackRails::SearchTypes::QUERY
       search_by_query
     end
     self
@@ -22,9 +22,9 @@ class Together
     return [] if results.blank?
 
     case search_type
-    when SlackRails::SearchType::LINK
+    when Constants::SlackRails::SearchTypes::LINK
       results_by_link
-    when SlackRails::SearchType::QUERY
+    when Constants::SlackRails::SearchTypes::QUERY
       results_by_query
     end
   end

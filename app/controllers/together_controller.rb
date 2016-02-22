@@ -5,7 +5,7 @@ class TogetherController < SlackAppController
 
   def top
     @user_name = session[:user]["name"]
-    @eyes_chats = slack.search_by_reaction_for_chat(user_id: session[:user]["id"], reaction_type: SlackReaction::EYES)
+    @eyes_chats = slack.search_by_reaction_for_chat(user_id: session[:user]["id"], reaction_type: Constants::SlackRails::SlackReactions::EYES)
   end
 
   def index
@@ -26,7 +26,7 @@ class TogetherController < SlackAppController
     return render if @validate.has_error?
 
     parameters = set_query_parameters
-    together = Together.new(api_token: session[:token], query: parameters.query, search_type: SlackRails::SearchType::QUERY)
+    together = Together.new(api_token: session[:token], query: parameters.query, search_type: Constants::SlackRails::SearchTypes::QUERY)
     @results = together.search.results_extracted
   end
 
@@ -35,7 +35,7 @@ class TogetherController < SlackAppController
     return render 'search' if @validate.has_error?
 
     parameters = set_link_parameters
-    together = Together.new(api_token: session[:token], query: parameters.query, ts: parameters.ts, search_type: SlackRails::SearchType::LINK)
+    together = Together.new(api_token: session[:token], query: parameters.query, ts: parameters.ts, search_type: Constants::SlackRails::SearchTypes::LINK)
     @results = together.search.results_extracted
 
     render :search

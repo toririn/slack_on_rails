@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
     session[:user] = {}
     session[:user]["name"] = slack_data["info"]["user"]
     session[:user]["id"] = slack_data["info"]["user_id"]
-    session[:user]["token"] = SLACK_ON_RAILS_TOKEN
+    session[:user]["token"] = Constants::SLACK_ON_RAILS_TOKEN
     session[:user]["ts"] = Time.zone.now.to_i
     session[:token] = slack_data["credentials"]["token"]
   rescue => ex
@@ -57,7 +57,7 @@ class SessionsController < ApplicationController
     session[:user] = {}
     session[:user]["name"] = @auth_data["user"]
     session[:user]["id"] = @auth_data["user_id"]
-    session[:user]["token"] = SLACK_ON_RAILS_TOKEN
+    session[:user]["token"] = Constants::SLACK_ON_RAILS_TOKEN
     session[:user]["ts"] = Time.zone.now.to_i
   end
 end

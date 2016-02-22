@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  path = ROOT_PATH
+  path = Constants::ROOT_PATH
   get "#{path}search" => 'together#index'
   # todo_managementのroute
   post "#{path}todo_management/:channel/delete_task" => 'todo_managements#delete_task'

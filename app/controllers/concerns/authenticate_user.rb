@@ -26,10 +26,10 @@ module AuthenticateUser
   end
 
   def verify_token?
-    session[:user]["token"] == SLACK_ON_RAILS_TOKEN
+    session[:user]["token"] == Constants::SLACK_ON_RAILS_TOKEN
   end
 
   def verify_date?
-    session[:user]["ts"] > Time.zone.now.days_ago(Sessions::HOLDING_PERIOD).to_i
+    session[:user]["ts"] > Time.zone.now.days_ago(Constants::Sessions::HOLDING_PERIOD).to_i
   end
 end

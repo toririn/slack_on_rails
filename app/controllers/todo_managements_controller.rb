@@ -51,27 +51,27 @@ class TodoManagementsController < SlackAppController
   end
 
   def todo
-    TodoManagements::Keywords::TODO
+    Constants::TodoManagements::Keywords::TODO
   end
 
   def doing
-    TodoManagements::Keywords::DO
+    Constants::TodoManagements::Keywords::DO
   end
 
   def done
-    TodoManagements::Keywords::DONE
+    Constants::TodoManagements::Keywords::DONE
   end
 
   def comment
-    TodoManagements::Keywords::SAY
+    Constants::TodoManagements::Keywords::SAY
   end
 
   def book
-    TodoManagements::Keywords::BOOK
+    Constants::TodoManagements::Keywords::BOOK
   end
 
   def task
-    TodoManagements::Keywords::TASK
+    Constants::TodoManagements::Keywords::TASK
   end
 
 end

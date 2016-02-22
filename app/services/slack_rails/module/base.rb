@@ -18,6 +18,6 @@ module SlackRails::Module::Base
   end
 
   def get_reactions_list(user_id)
-    slack_client.reactions_list(user: user_id, count: CHECK_MAX_COUNT)
+    slack_client.reactions_list(user: user_id, count: Constants::SlackRails::CHECK_MAX_COUNT)
   end
 end
