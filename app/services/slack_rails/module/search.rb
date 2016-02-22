@@ -14,13 +14,10 @@ module SlackRails::Module::Search
     ts_d = ts.delete("p")
     count = 0
     results["messages"]["matches"] = results["messages"]["matches"].map do |result|
+      next if count == 100
       if result["ts"].delete(".") >= ts_d
-        result
         count += 1
-      end
-
-      if count == 100
-        break
+        result
       end
     end.compact
     results
