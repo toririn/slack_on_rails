@@ -6,6 +6,7 @@ class Together
     :query,
     :ts,
     :search_type,
+    :count
   )
 
   def search
@@ -36,7 +37,7 @@ class Together
   end
 
   def search_by_link
-    @results = slack.search_by_link_for_chat(query: query, ts: ts)
+    @results = slack.search_by_link_for_chat(query: query, ts: ts, count: count)
   end
 
   def results

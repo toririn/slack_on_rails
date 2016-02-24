@@ -1,6 +1,7 @@
 class TogetherLinkParameter
   attr_accessor(
     :link,
+    :count,
   )
 
   def query
@@ -17,6 +18,10 @@ class TogetherLinkParameter
 
   def archives
     url_paths[1]
+  end
+
+  def count_num
+    count.to_i
   end
 
   private

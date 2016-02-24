@@ -1,9 +1,15 @@
 <div class="form-group" >
   <%= form_tag('/search_link', remote: true, method: :post, ) do %>
     <h4>リンクで検索する</h4>
-    <div class="col-xm-12">
+    <div class="col-md-1">
+      <%= label_tag('slack[count]', "最大取得件数") %>
+      <%= select_tag('slack[count]', options_for_select(@count_candidate), class: "form-control") %>
+    </div>
+    <div class="col-md-11">
       <%= label_tag('slack[link]', "チャットへのリンク") %>
       <%= text_field_tag('slack[link]', '', class: "form-control") %>
+    </div>
+    <div class="col-md-9">
       <%= submit_tag('検索', class: "btn btn-primary ladda-button", "data-style"=> "contract") %>
     </div>
   <% end %>

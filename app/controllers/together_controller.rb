@@ -19,6 +19,7 @@ class TogetherController < SlackAppController
   end
 
   def link
+    @count_candidate = { "10" => 10, "50" => 50, "100" => 100, "250" => 250, "500" => 500 }
   end
 
   def search
@@ -33,9 +34,14 @@ class TogetherController < SlackAppController
   def search_link
     @validate = Validators::SlackSearchLink.new(search_link_params)
     return render 'search' if @validate.has_error?
-
     parameters = set_link_parameters
-    together = Together.new(api_token: session[:token], query: parameters.query, ts: parameters.ts, search_type: Constants::SlackRails::SearchTypes::LINK)
+    together = Together.new(
+      api_token: session[:token],
+      query: parameters.query,
+      ts: parameters.ts,
+      search_type: Constants::SlackRails::SearchTypes::LINK,
+      count: parameters.count_num,
+    )
     @results = together.search.results_extracted
 
     render :search
@@ -96,6 +102,7 @@ class TogetherController < SlackAppController
   def set_link_parameters
     TogetherLinkParameter.new.tap do |p|
       p.link = params[:slack][:link]
+      p.count = params[:slack][:count]
     end
   end
 end

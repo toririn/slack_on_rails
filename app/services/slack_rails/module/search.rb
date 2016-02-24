@@ -4,19 +4,20 @@ module SlackRails::Module::Search
   # Chat検索
 
   def search_by_query_for_chat(query, count = Constants::SlackRails::SEARCH_MAX_COUNT)
-    slack_client.search_messages(query: query, count: count)
+    slack_client.search_messages(query: query, count: count, sort: :timestamp, sort_dir: :asc)
   rescue => ex
     []
   end
 
-  def search_by_link_for_chat(query: , ts: "")
+  def search_by_link_for_chat(query: , ts: "", count: nil)
     results = search_by_query_for_chat(query)
     ts_d = ts.delete("p")
-    count = 0
+    result_num = 0
+    result_max_num = count || Constants::SlackRails::SEARCH_RESULT_MAX_COUNT
     results["messages"]["matches"] = results["messages"]["matches"].map do |result|
-      next if count == Constants::SlackRails::SEARCH_RESULT_MAX_COUNT
+      next if result_num == result_max_num
       if result["ts"].delete(".") >= ts_d
-        count += 1
+        result_num += 1
         result
       end
     end.compact
