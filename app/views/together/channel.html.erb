@@ -1,5 +1,5 @@
 <div class="form-group" >
-  <%= form_tag('/search', remote: true, method: :post, ) do %>
+<%= form_tag({controller: "together", action: "search"}, remote: true, method: :post, ) do %>
     <input name="slack[channel]" type="hidden" value="<%= @channel %>">
     <h4>【<%= @channel %>】チャンネルを検索する</h4>
     <div class="col-sm-6">

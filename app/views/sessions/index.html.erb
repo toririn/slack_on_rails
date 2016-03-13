@@ -10,7 +10,7 @@
     <div class="col-sm-12">
       <h2>Slack on Rails（仮）へようこそ。</h2>
       <h3>下記のボタンからログインしてください。</h3>
-      <%= form_tag('/login', method: :post) do %>
+      <%= form_tag("#{Constants::ROOT_PATH}login", method: :post) do %>
         <div class="center-block">
           <input type="submit" value="Slackアカウントでログインする" class="btn btn-primary">
         </div>

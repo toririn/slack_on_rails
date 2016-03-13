@@ -15,7 +15,7 @@
 <script>
 function search_submit(name){
   var link = document.forms["channel_form"].elements[name].value;
-  document.forms["channel_form"].action = "/search/" + link;
+  document.forms["channel_form"].action = "/<%= Constants::ROOT_PATH %>search/" + link;
   document.forms["channel_form"].method = "POST";
   document.forms["channel_form"].submit();
 }

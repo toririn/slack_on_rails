@@ -33,7 +33,10 @@ class TogetherController < SlackAppController
 
   def search_link
     @validate = Validators::SlackSearchLink.new(search_link_params)
-    return render 'search' if @validate.has_error?
+    if @validate.has_error?
+      @count_candidate = { "10" => 10, "50" => 50, "100" => 100, "250" => 250, "500" => 500 }
+      return render :search
+    end
     parameters = set_link_parameters
     together = Together.new(
       api_token: session[:token],

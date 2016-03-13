@@ -1,5 +1,5 @@
 <div class="form-group" >
-  <%= form_tag('/search_link', remote: true, method: :post, ) do %>
+<%= form_tag({controller: "together", action: "search_link"}, remote: true, method: :post) do %>
     <h4>リンクで検索する</h4>
     <div class="col-md-1">
       <%= label_tag('slack[count]', "取得件数") %>
