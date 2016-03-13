@@ -9,10 +9,10 @@ working_directory rails_root
 
 timeout 30
 
-listen "#{unicorn_path}unicorn_#{application_name}.sock"
+listen "#{rails_root}/tmp/unicorn_#{application_name}.sock"
 # とりあえず動かしたいだけなら 8080 で動かせれる。
 #listen 8080
-pid "#{unicorn_path}unicorn_#{application_name}.pid"
+pid "#{rails_root}/tmp/unicorn_#{application_name}.pid"
 
 stderr_path File.expand_path('../../log/unicorn_stderr.log', __FILE__)
 stdout_path File.expand_path('../../log/unicorn_stdout.log', __FILE__)

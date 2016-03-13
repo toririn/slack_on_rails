@@ -2,7 +2,7 @@
   <%= form_tag('/search_link', remote: true, method: :post, ) do %>
     <h4>リンクで検索する</h4>
     <div class="col-md-1">
-      <%= label_tag('slack[count]', "最大取得件数") %>
+      <%= label_tag('slack[count]', "取得件数") %>
       <%= select_tag('slack[count]', options_for_select(@count_candidate), class: "form-control") %>
     </div>
     <div class="col-md-11">
