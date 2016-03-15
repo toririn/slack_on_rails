@@ -11,11 +11,11 @@ module TodoWorkHelper
 
   def doing_time(done_work, do_work_list)
     time = "Do未登録"
-    done_text = work_by(done_work[0]) 
-    done_time = done_work[1].slice(0, done_work[1].index(".")).to_i
+    done_text = work_by(done_work[:text])
+    done_time = done_work[:ts].slice(0, done_work[:ts].index(".")).to_i
     do_work_list.each do |do_work|
-      if work_by(do_work[0]) == done_text
-        do_time = do_work[1].slice(0, do_work[1].index(".")).to_i
+      if work_by(do_work[:text]) == done_text
+        do_time = do_work[:ts].slice(0, do_work[:ts].index(".")).to_i
         time = Time.at(done_time - do_time).utc.strftime("%X")
       end
     end
