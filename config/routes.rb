@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   post "#{path}search/:channel" => 'together#channel'
   post "#{path}save" => 'together#save'
   post "#{path}save_lodge" => 'together#save_lodge'
-  root :to => "sessions#index"
   get  "#{path}" => "sessions#index"
   post "#{path}auth/:provider/callback" => 'sessions#create'
   get "#{path}auth/:provider/callback" => 'sessions#create'

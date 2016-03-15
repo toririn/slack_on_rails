@@ -20,13 +20,15 @@ class SessionsController < ApplicationController
     if create_session(slack_data)
       redirect_to controller: 'together', action: 'top'
     else
-      redirect_to action: 'index', notice: "Slackから拒否されちゃいました。また後でやってみてください。"
+      flash[:notice] = "Slackから拒否されちゃいました。また後でやってみてください。"
+      redirect_to action: 'index'
     end
   end
 
   def destroy
     session[:user] = nil
-    redirect_to action: 'index', notice: "ログアウトが完了しました。さようなら！"
+    flash[:notice] = "ログアウトが完了しました。さようなら！"
+    redirect_to action: 'index'
   end
 
   private

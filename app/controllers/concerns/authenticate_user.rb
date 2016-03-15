@@ -8,12 +8,16 @@ module AuthenticateUser
   private
 
   def authenticate_user!
-    return redirect_to controller: 'sessions', action: 'index', notice: "ログインしてないですよ〜。ログインしてください！" if session[:user].blank?
+    if session[:user].blank?
+      flash[:notice] = "ログインしてないですよ〜。ログインしてください！"
+      return redirect_to controller: 'sessions', action: 'index'
+    end
     if verify_session?
       session[:user]["ts"] = Time.zone.now.to_i
     else
       session[:user] = nil
-      redirect_to controller: 'sessions', action: 'index', notice: "ログイン情報が不正か、前回のログインがかなり昔のようです。もう一度認証をお願いします。"
+      flash[:notice] =  "ログイン情報が不正か、前回のログインがかなり昔のようです。もう一度認証をお願いします。"
+      redirect_to controller: 'sessions', action: 'index'
     end
   end
 
