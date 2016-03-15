@@ -3,22 +3,28 @@ module SlackRails::Module::Search
 
   # Chat検索
 
-  def search_by_query_for_chat(query, count = SlackRails::SEARCH_MAX_COUNT)
-    slack_client.search_messages(query: query, count: count)
+  def search_by_query_for_chat(query, count = Constants::SlackRails::SEARCH_MAX_COUNT)
+    slack_client.search_messages(query: query, count: count, sort: :timestamp, sort_dir: :asc)
   rescue => ex
+    p ex
     []
   end
 
-  def search_by_link_for_chat(query: , ts: "")
+  def search_by_link_for_chat(query: , ts: "", count: nil)
     results = search_by_query_for_chat(query)
     ts_d = ts.delete("p")
+    result_num = 0
+    result_max_num = count || Constants::SlackRails::SEARCH_RESULT_MAX_COUNT
     results["messages"]["matches"] = results["messages"]["matches"].map do |result|
+      next if result_num == result_max_num
       if result["ts"].delete(".") >= ts_d
+        result_num += 1
         result
       end
     end.compact
     results
   rescue => ex
+    p ex
     []
   end
 
@@ -35,6 +41,7 @@ module SlackRails::Module::Search
     end
     chats
   rescue => ex
+    p ex
     []
   end
 
@@ -44,6 +51,7 @@ module SlackRails::Module::Search
     channel_list = get_channel_list
     channel_list.select {|ch| [ch] if ch[0] =~ /#{name}/ }
   rescue => ex
+    p ex
     []
   end
 
@@ -51,6 +59,7 @@ module SlackRails::Module::Search
     channel_list = get_channel_list
     channel_list.find {|ch| ch[1] == id }
   rescue => ex
+    p ex
     []
   end
 end

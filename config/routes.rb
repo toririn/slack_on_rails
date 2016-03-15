@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  path = ROOT_PATH
+  path = Constants::ROOT_PATH
   get "#{path}search" => 'together#index'
   # todo_managementのroute
   post "#{path}todo_management/:channel/delete_task" => 'todo_managements#delete_task'
@@ -9,14 +9,14 @@ Rails.application.routes.draw do
   get "#{path}search/query" => 'together#query'
   get "#{path}search/link" => 'together#link'
   post "#{path}search" => 'together#search'
-  post "#{path}search_link" => 'together#search_link'
+  post "#{path}search/link" => 'together#search_link'
   post "#{path}search/:channel" => 'together#channel'
   post "#{path}save" => 'together#save'
   post "#{path}save_lodge" => 'together#save_lodge'
-  root "#{path}sessions#index"
+  get  "#{path}" => "sessions#index"
   post "#{path}auth/:provider/callback" => 'sessions#create'
+  get "#{path}auth/:provider/callback" => 'sessions#create'
   post "#{path}login" => 'sessions#login'
-  get  "#{path}auth/:provider/callback" => 'sessions#create'
   get  "#{path}logout" => 'sessions#destroy'
   get  "#{path}top" => 'together#top'
   get "*anything" => 'errors#routing'

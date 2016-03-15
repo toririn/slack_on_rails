@@ -5,7 +5,7 @@ class TogetherController < SlackAppController
 
   def top
     @user_name = session[:user]["name"]
-    @eyes_chats = slack.search_by_reaction_for_chat(user_id: session[:user]["id"], reaction_type: SlackReaction::EYES)
+    @eyes_chats = slack.search_by_reaction_for_chat(user_id: session[:user]["id"], reaction_type: Constants::SlackRails::SlackReactions::EYES)
   end
 
   def index
@@ -19,6 +19,7 @@ class TogetherController < SlackAppController
   end
 
   def link
+    @count_candidate = { "10" => 10, "50" => 50, "100" => 100, "250" => 250, "500" => 500 }
   end
 
   def search
@@ -26,16 +27,24 @@ class TogetherController < SlackAppController
     return render if @validate.has_error?
 
     parameters = set_query_parameters
-    together = Together.new(api_token: session[:token], query: parameters.query, search_type: SlackRails::SearchType::QUERY)
+    together = Together.new(api_token: session[:token], query: parameters.query, search_type: Constants::SlackRails::SearchTypes::QUERY)
     @results = together.search.results_extracted
   end
 
   def search_link
     @validate = Validators::SlackSearchLink.new(search_link_params)
-    return render 'search' if @validate.has_error?
-
+    if @validate.has_error?
+      @count_candidate = { "10" => 10, "50" => 50, "100" => 100, "250" => 250, "500" => 500 }
+      return render :search
+    end
     parameters = set_link_parameters
-    together = Together.new(api_token: session[:token], query: parameters.query, ts: parameters.ts, search_type: SlackRails::SearchType::LINK)
+    together = Together.new(
+      api_token: session[:token],
+      query: parameters.query,
+      ts: parameters.ts,
+      search_type: Constants::SlackRails::SearchTypes::LINK,
+      count: parameters.count_num,
+    )
     @results = together.search.results_extracted
 
     render :search
@@ -96,6 +105,7 @@ class TogetherController < SlackAppController
   def set_link_parameters
     TogetherLinkParameter.new.tap do |p|
       p.link = params[:slack][:link]
+      p.count = params[:slack][:count]
     end
   end
 end

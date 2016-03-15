@@ -8,25 +8,27 @@ class SessionsController < ApplicationController
 
   def login
     if authenticated_user?
-     restore_session
-     redirect_to top_path
+      restore_session
+      redirect_to controller: 'together', action: 'top'
     else
-      redirect_to "/auth/slack"
+      redirect_to "/#{Constants::ROOT_PATH}auth/slack"
     end
   end
 
   def create
     slack_data = request.env['omniauth.auth']
     if create_session(slack_data)
-      redirect_to top_path
+      redirect_to controller: 'together', action: 'top'
     else
-      redirect_to root_path, notice: "Slackから拒否されちゃいました。また後でやってみてください。"
+      flash[:notice] = "Slackから拒否されちゃいました。また後でやってみてください。"
+      redirect_to action: 'index'
     end
   end
 
   def destroy
     session[:user] = nil
-    redirect_to root_path, notice: "ログアウトが完了しました。さようなら！"
+    flash[:notice] = "ログアウトが完了しました。さようなら！"
+    redirect_to action: 'index'
   end
 
   private
@@ -37,7 +39,7 @@ class SessionsController < ApplicationController
     session[:user] = {}
     session[:user]["name"] = slack_data["info"]["user"]
     session[:user]["id"] = slack_data["info"]["user_id"]
-    session[:user]["token"] = SLACK_ON_RAILS_TOKEN
+    session[:user]["token"] = Constants::SLACK_ON_RAILS_TOKEN
     session[:user]["ts"] = Time.zone.now.to_i
     session[:token] = slack_data["credentials"]["token"]
   rescue => ex
@@ -57,7 +59,7 @@ class SessionsController < ApplicationController
     session[:user] = {}
     session[:user]["name"] = @auth_data["user"]
     session[:user]["id"] = @auth_data["user_id"]
-    session[:user]["token"] = SLACK_ON_RAILS_TOKEN
+    session[:user]["token"] = Constants::SLACK_ON_RAILS_TOKEN
     session[:user]["ts"] = Time.zone.now.to_i
   end
 end

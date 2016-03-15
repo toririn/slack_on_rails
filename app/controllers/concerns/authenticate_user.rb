@@ -8,12 +8,16 @@ module AuthenticateUser
   private
 
   def authenticate_user!
-    return redirect_to root_path, notice: "ログインしてないですよ〜。ログインしてください！" if session[:user].blank?
+    if session[:user].blank?
+      flash[:notice] = "ログインしてないですよ〜。ログインしてください！"
+      return redirect_to controller: 'sessions', action: 'index'
+    end
     if verify_session?
       session[:user]["ts"] = Time.zone.now.to_i
     else
       session[:user] = nil
-      redirect_to root_path, notice: "ログイン情報が不正か、前回のログインがかなり昔のようです。もう一度認証をお願いします。"
+      flash[:notice] =  "ログイン情報が不正か、前回のログインがかなり昔のようです。もう一度認証をお願いします。"
+      redirect_to controller: 'sessions', action: 'index'
     end
   end
 
@@ -26,10 +30,10 @@ module AuthenticateUser
   end
 
   def verify_token?
-    session[:user]["token"] == SLACK_ON_RAILS_TOKEN
+    session[:user]["token"] == Constants::SLACK_ON_RAILS_TOKEN
   end
 
   def verify_date?
-    session[:user]["ts"] > Time.zone.now.days_ago(Sessions::HOLDING_PERIOD).to_i
+    session[:user]["ts"] > Time.zone.now.days_ago(Constants::Sessions::HOLDING_PERIOD).to_i
   end
 end

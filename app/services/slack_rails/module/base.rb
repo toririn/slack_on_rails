@@ -3,11 +3,11 @@ module SlackRails::Module::Base
   private
 
   def get_channel_list
-    SLACK_CHANNEL_LIST
+    Channel.pluck(:name, :id)
   end
 
   def get_user_list
-    SLACK_USER_LIST
+    User.pluck(:name, :id)
   end
 
   def get_user_image_list
@@ -18,6 +18,6 @@ module SlackRails::Module::Base
   end
 
   def get_reactions_list(user_id)
-    slack_client.reactions_list(user: user_id, count: 20)
+    slack_client.reactions_list(user: user_id, count: Constants::SlackRails::CHECK_MAX_COUNT)
   end
 end
