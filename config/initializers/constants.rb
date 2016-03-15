@@ -24,7 +24,7 @@ module Constants
   # SlackRails関係
   module SlackRails
     # チャット検索の最大取得結果数
-    SEARCH_MAX_COUNT = 500
+    SEARCH_MAX_COUNT = 1000
     # （トップページ）チェック項目の最大取得数
     CHECK_MAX_COUNT = 1000
     # 検索結果表示最大件数

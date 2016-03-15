@@ -6,6 +6,7 @@ module SlackRails::Module::Search
   def search_by_query_for_chat(query, count = Constants::SlackRails::SEARCH_MAX_COUNT)
     slack_client.search_messages(query: query, count: count, sort: :timestamp, sort_dir: :asc)
   rescue => ex
+    p ex
     []
   end
 
@@ -23,6 +24,7 @@ module SlackRails::Module::Search
     end.compact
     results
   rescue => ex
+    p ex
     []
   end
 
@@ -39,6 +41,7 @@ module SlackRails::Module::Search
     end
     chats
   rescue => ex
+    p ex
     []
   end
 
@@ -48,6 +51,7 @@ module SlackRails::Module::Search
     channel_list = get_channel_list
     channel_list.select {|ch| [ch] if ch[0] =~ /#{name}/ }
   rescue => ex
+    p ex
     []
   end
 
@@ -55,6 +59,7 @@ module SlackRails::Module::Search
     channel_list = get_channel_list
     channel_list.find {|ch| ch[1] == id }
   rescue => ex
+    p ex
     []
   end
 end

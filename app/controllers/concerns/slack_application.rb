@@ -13,11 +13,11 @@ module SlackApplication
   end
 
   def set_channel_list
-    @channel_list ||= Channel.pluck(:name, :id)
+    @channel_list ||= Channel.order(:name).pluck(:name, :id)
   end
 
   def set_user_list
-    @user_list ||= User.pluck(:name, :id)
+    @user_list ||= User.order(:name).pluck(:name, :id)
   end
 
   def slack
