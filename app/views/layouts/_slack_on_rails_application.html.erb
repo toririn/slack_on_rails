@@ -15,12 +15,12 @@
 </div>
 <script>
 var lb = Ladda.create( document.querySelector( '.ladda-button' ));
-$('form').on('ajax:send', function() {
+$("form.search_form").on('ajax:send', function() {
   // insert the failure message inside the "#account_settings" element
   alert("検索を開始しました。");
   lb.start()
 });
-$('form').on('ajax:complete', function() {
+$("form.search_form").on('ajax:complete', function() {
   // insert the failure message inside the "#account_settings" element
   alert("検索が完了しました。");
   lb.stop()

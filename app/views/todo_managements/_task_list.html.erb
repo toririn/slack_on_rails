@@ -8,7 +8,7 @@
         task
       </th>
       <th>
-        削除ボタン
+        完了ボタン
       </th>
     </tr>
   </thead>
@@ -24,9 +24,10 @@
           <span class="small text-muted"><%= time_by(task[:ts]) %></span>
         </td>
         <td >
-          <%= form_tag("/todo_management/#{@channel_name}/delete_task", remote: true, method: :post) do %>
+          <%= form_tag({controller: "todo_managements", action: "complete_task", channel: @channel_name}, remote: true, method: :post) do %>
             <input type="hidden" name="ts" value="<%= task[:ts] %>">
-            <%= submit_tag('削除', class: "small btn btn-warning", name: "delete") %>
+            <input type="hidden" name="text" value="<%= work_by(@slack_markdown_processor.call(task[:text])[:output].to_s) %>">
+            <%= submit_tag('完了', class: "small btn btn-warning", name: "complete") %>
           <% end %>
         </td>
       </tr>

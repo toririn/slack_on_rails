@@ -1,0 +1,6 @@
+$('#task_list').html("<%=j render(partial: 'task_list', locals: { task_list: @task_list } ) %>")
+<% if @result_update && @result_post %>
+  alert("更新が完了しました。反映には時間がかかるのでしばらく待ってから更新してください。");
+<% else %>
+  alert("更新に失敗しました。やり直すか直接Slack上で更新してください。ごめんなさい。");
+<% end %>

@@ -22,6 +22,14 @@ class TodoManagementsController < SlackAppController
     set_task_list
   end
 
+  def complete_task
+    @channel_name = params[:channel]
+    channel_id = slack.convert_to_id(channel: @channel_name)
+    @result_update = slack.update_by_chat_in_channel(text: "DONE::#{params[:text]}", ts: params[:ts], channel_id: channel_id)
+    @result_post = slack.post_by_chat_in_channel(text: "DONE::#{params[:text]}", username: session[:user]["name"], channel_id: channel_id) if @result_update
+    set_task_list
+  end
+
   private
 
   def todo_management
