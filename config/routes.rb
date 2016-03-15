@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   post "#{path}save_lodge" => 'together#save_lodge'
   root :to => "sessions#index"
   get  "#{path}" => "sessions#index"
-  post "auth/:provider/callback" => 'sessions#create'
+  post "#{path}auth/:provider/callback" => 'sessions#create'
+  get "#{path}auth/:provider/callback" => 'sessions#create'
   post "#{path}login" => 'sessions#login'
-  get  "auth/:provider/callback" => 'sessions#create'
   get  "#{path}logout" => 'sessions#destroy'
   get  "#{path}top" => 'together#top'
   get "*anything" => 'errors#routing'

@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
 
   def login
     if authenticated_user?
-     restore_session
-     redirect_to top_path
+      restore_session
+      redirect_to controller: 'together', action: 'top'
     else
-      redirect_to "/auth/slack"
+      redirect_to "/#{Constants::ROOT_PATH}auth/slack"
     end
   end
 
@@ -20,13 +20,13 @@ class SessionsController < ApplicationController
     if create_session(slack_data)
       redirect_to controller: 'together', action: 'top'
     else
-      redirect_to root_path, notice: "Slackから拒否されちゃいました。また後でやってみてください。"
+      redirect_to action: 'index', notice: "Slackから拒否されちゃいました。また後でやってみてください。"
     end
   end
 
   def destroy
     session[:user] = nil
-    redirect_to root_path, notice: "ログアウトが完了しました。さようなら！"
+    redirect_to action: 'index', notice: "ログアウトが完了しました。さようなら！"
   end
 
   private
