@@ -61,4 +61,10 @@ module Constants
     # タスク管理での過去のチャット取得件数
     SEARCH_MAX_COUNT = 1000
   end
+
+  module Channels
+    module Errors
+      NOT_INTRODUCTION = "チャンネル紹介が登録されていません。"
+    end
+  end
 end

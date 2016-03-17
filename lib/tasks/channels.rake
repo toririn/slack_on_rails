@@ -4,10 +4,10 @@ namespace :channels do
     Channel.delete_all
     channels = SLACK_OWNER.channels_list
     channel_list = channels["channels"].map do |channel|
-                     [channel["name"], channel["id"]]
+                     [channel["name"], channel["id"], channel["purpose"]["value"]]
                    end.sort {|a, b| a[0] <=> b[0] }
-    channel_list.each do |name, id|
-      Channel.create(id: id, name: name)
+    channel_list.each do |name, id, introduction|
+      Channel.create(id: id, name: name, introduction: introduction)
     end
     puts "アップデート完了！"
   end

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   post "#{path}login" => 'sessions#login'
   get  "#{path}logout" => 'sessions#destroy'
   get  "#{path}top" => 'together#top'
+  # Otack関係
+  get  "#{path}otacks/index" => 'otacks#index'
   get "*anything" => 'errors#routing'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

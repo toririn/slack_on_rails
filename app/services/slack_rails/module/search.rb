@@ -68,9 +68,9 @@ module SlackRails::Module::Search
   # 例：["UH0098IYU", "UC0912YII", "U12SDF19", ...]
   def channel_joined_member_ids(channel_id)
     channels_info = get_channels_info(channel_id)
-    channels_info["channel"]["members"].map do |member|
-      member
-    end
+    channels_info["channel"]["members"].map do |member_id|
+      member_id
+    end.sort
   rescue => ex
     p ex
     []

@@ -1,0 +1,10 @@
+<h2>おたっくチャンネル一覧</h2>
+<div class="row">
+  <% @otacks.each.with_index do |otack, idx| %>
+    <div class="col-sm-4">
+      <h3><%= otack.name %></h3>
+      <h5><%= otack.introduction %></h5>
+      <%= otack.render_members %>
+    </div>
+  <% end %>
+</div>

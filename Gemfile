@@ -33,8 +33,6 @@ gem 'jquery-turbolinks'
 # material-designを使う
 gem 'bootstrap-material-design'
 gem 'bootstrap3-rails'
-# decorators層導入のため
-gem 'draper', '~> 1.3'
 # vue.js使用のため
 gem 'rails-assets-vue'
 # markdownをhtml変換するため
@@ -63,6 +61,8 @@ gem 'whenever', require: false
 # gem 'capistrano-rails', group: :development
 # for search active record
 gem 'ransack'
+# for decorator
+gem 'active_decorator'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
