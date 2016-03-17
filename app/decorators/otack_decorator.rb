@@ -10,7 +10,7 @@ module OtackDecorator
 
   def introduction
     @@otack_channels ||= Channel.otack_channels.pluck(:id, :introduction)
-    @@otack_channels.find{|id, intro| id == id }.try(:[], 1).presence || Constants::Channels::Errors::NOT_INTRODUCTION
+    @@otack_channels.find{|channel_id, intro| channel_id == id }.try(:[], 1).presence || Constants::Channels::Errors::NOT_INTRODUCTION
   end
 
   private
