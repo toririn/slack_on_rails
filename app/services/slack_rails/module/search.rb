@@ -62,4 +62,17 @@ module SlackRails::Module::Search
     p ex
     []
   end
+
+  # 引数のチャンネルIDのチャンネルに参加しているユーザ全員のユーザIDを返す
+  # 戻り型：Array
+  # 例：["UH0098IYU", "UC0912YII", "U12SDF19", ...]
+  def channel_joined_member_ids(channel_id)
+    channels_info = get_channels_info(channel_id)
+    channels_info["channel"]["members"].map do |member|
+      member
+    end
+  rescue => ex
+    p ex
+    []
+  end
 end
