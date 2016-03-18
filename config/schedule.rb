@@ -21,9 +21,20 @@
 set :enviroment, :development
 set :output, {error: 'log/cron_error.log', standard: 'log/cron_std.log'}
 
-
 every 12.hours do
   rake 'users:update'
+end
+
+every 12.hours do
+  rake 'channels:update'
+end
+
+every 12.hours do
+  rake 'user_images:update'
+end
+
+every 24.hours do
+  rake 'otacks:update'
 end
 
 #every 1.day, at: '1:06' do

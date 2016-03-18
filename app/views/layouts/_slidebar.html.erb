@@ -37,7 +37,7 @@ function todo_submit(name){
     <li><%= select_tag('xclub_search', options_for_select(xclub_in(channel_list)), class: "form-control slide_bar_select", onchange: "search_submit('xclub_search')") %></li>
     <li><%= select_tag('etc_search', options_for_select(etc_in(channel_list)), class: "form-control slide_bar_select", onchange: "search_submit('etc_search')") %></li>
   <% end %>
-  <h5>■タスク状況確認■</h5>
+  <h5>■タスク管理■</h5>
   <%= form_tag('', name: "todo_management_form") do %>
     <li><%= select_tag('times_todo', options_for_select(times_in(channel_list)), class: "form-control slide_bar_select", onchange: "todo_submit('times_todo')") %></li>
   <% end %>
