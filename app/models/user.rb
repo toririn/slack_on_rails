@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     elsif name
       @@users.find{|user_id, user_name| user_name == name }.try(:[], 0)
     else
-      ""
+      "not found"
     end
   end
 end
