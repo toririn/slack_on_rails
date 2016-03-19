@@ -33,5 +33,6 @@ module Src
     # 新規作成ディレクトリの読み込み
     config.autoload_paths += %W(#{config.root}/app/services)
     config.autoload_paths += %W(#{config.root}/app/parameters)
+    config.autoload_paths += %W(#{config.root}/app/callbacks)
   end
 end

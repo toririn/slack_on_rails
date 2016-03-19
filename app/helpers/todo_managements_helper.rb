@@ -1,12 +1,22 @@
-module TodoWorkHelper
+module TodoManagementsHelper
   def time_by(sec)
     time = sec.slice(0, sec.index(".")).to_i
-    date = Time.at(time)
+    date = Time.zone.at(time)
     date.strftime("%Y年%m月%d日, %H時%M分%S秒")
   end
 
   def work_by(chat)
     chat.slice(chat.index("::")+2, chat.size) rescue ""
+  end
+
+  def convert_date(date)
+    return Time.zone.now.strftime("%Y年%m月%d日") if date.blank?
+    fetch_date = /\A(\d*)\/(\d*)\/(\d*)/
+    date =~ fetch_date
+    "#{$3}年#{$1}月#{$2}日"
+  rescue => ex
+    puts ex, ex.backtrace
+    Time.zone.now.strftime("%Y年%m月%d日")
   end
 
   def doing_time(done_work, do_work_list, done_work_list, index_no)

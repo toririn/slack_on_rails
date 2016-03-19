@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "#{path}todo_management/:channel/complete_task" => 'todo_managements#complete_task'
   get "#{path}todo_management/:channel" => 'todo_managements#index'
   post "#{path}todo_management/:channel" => 'todo_managements#modify'
+  post "#{path}todo_management/:channel/report" => 'todo_managements#report'
   # searchのroute
   get "#{path}search/query" => 'together#query'
   get "#{path}search/link" => 'together#link'
