@@ -1,14 +1,16 @@
 defaults: &defaults
-  DB_USERNAME: root
-  DB_PASSWORD: 
+  DB_USERNAME:
+  DB_PASSWORD:
   DB_SOCKET: /var/run/mysqld/mysqld.sock
-  SLACK_API_TOKEN: xoxp-
-  SLACK_CLIENT_ID: "00000000000.00000000000"
-  SLACK_SECRET: aaaaaaaaaaaa000aaaaaaaaaa
-  SLACK_URL: https://
-  SLACK_ON_RAILS_TOKEN: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  ROOT_PATH: ""
+  SLACK_API_TOKEN:
+  SLACK_CLIENT_ID:
+  SLACK_SECRET:
+  SLACK_URL:
+  SLACK_ON_RAILS_TOKEN:
+  ROOT_PATH: "slackonrails/"
   SLACK_ON_RAILS_IMAGE_ROOT_PATH: "/images"
+  SLACK_ON_RAILS_DIRECTORY:
+  SLACK_ON_RAILS_APPLICATION_NAME: "src"
 
 development:
   <<: *defaults
@@ -18,3 +20,4 @@ test:
 
 production:
   <<: *defaults
+  SECRET_KEY_BASE:
