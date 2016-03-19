@@ -13,14 +13,13 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
 
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-4">
         <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"><%= link_to("マイページ", controller: :together, action: :top) %></span>
-        <span class="icon-bar"><%= link_to("文字列で検索", controller: :together, action: :query) %></span>
-        <span class="icon-bar"><%= link_to("リンクで検索", controller: :together, action: :link) %></span>
-        <span class="icon-bar"><%= link_to("ログアウト", controller: :sessions, action: :destroy) %></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
 
       <!-- タイトルなどのテキスト -->
-      <%= link_to("Let's Slack Search!", { controller: :together, action: :top }, { class: "navbar-brand" }) %>
+      <%= link_to("Slack on Rails!", { controller: :together, action: :top }, { class: "navbar-brand" }) %>
 
     </div>
 
@@ -33,27 +32,28 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
         <li class="active">
           <%= link_to("マイページ", controller: :together, action: :top) %>
         </li>
-        <li >
-          <%= link_to("文字列で検索", controller: :together, action: :query) %>
-        </li>
-        <li>
-          <%= link_to("リンクで検索", controller: :together, action: :link) %>
-        </li>
-        <li>
-          <%= link_to("ログアウト", controller: :sessions, action: :destroy) %>
+        <!-- ドロップダウンのメニューも配置可能 -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="">まとめ機能関係　</span><span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li ><%= link_to("文字列で検索", controller: :together, action: :query) %></li>
+            <li><%= link_to("リンクで検索", controller: :together, action: :link) %></li>
+          </ul>
         </li>
         <!-- ドロップダウンのメニューも配置可能 -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class=""></span><span class="caret"></span>
+            <span class="">おたっく関係　</span><span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to("マイページ", controller: :together, action: :top) %></li>
-            <li><%= link_to("文字列で検索", controller: :together, action: :query) %></li>
-            <li><%= link_to("リンクで検索", controller: :together, action: :link) %></li>
-            <li class="divider"></li>
-            <li><%= link_to("ログアウト", controller: :sessions, action: :destroy) %></li>
+            <li><%= link_to("個人別検索", controller: :otacks, action: :index) %></li>
+            <li><%= link_to("一覧表示", controller: :otacks, action: :show) %></li>
           </ul>
+        </li>
+        <li>
+          <%= link_to("ログアウト", controller: :sessions, action: :destroy) %>
         </li>
       </ul>
     </div>
