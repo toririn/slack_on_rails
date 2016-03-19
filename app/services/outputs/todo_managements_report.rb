@@ -44,7 +44,7 @@ class Outputs::TodoManagementsReport
       sum_second = second.to_i
     end
     sum_minute += (sum_second / 60) + 1
-    sum_hour += (sum_minute / 60) + 1
+    sum_hour += (sum_minute / 60)
     "#{sum_hour}時間#{sum_minute % 60}分"
   rescue => ex
     puts ex, ex.backtrace
