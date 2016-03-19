@@ -1,6 +1,6 @@
 <% otacks.each.with_index do |otack, idx| %>
   <div class="col-sm-4">
-    <h3><%= otack.name %>(参加者数:<%= otack.me )</h3>
+    <h3><%= otack.name %>(参加者数:<%= otack.members_num %>人)</h3>
     <h5><%= otack.introduction %></h5>
     <%= otack.render_members %>
   </div>
