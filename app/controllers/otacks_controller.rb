@@ -1,17 +1,16 @@
 class OtacksController < SlackAppController
 
-  before_action :set_user_image_list, only: [:search, :search_link]
-
   def index
-    @otacks = Otack.all
+    set_user_list
   end
 
   def show
+    @otacks = Otack.all
   end
 
   def search
+    @user_name = User.convert(id: params[:user])
+    @otacks = Otack.ransack(members_cont: params[:user]).result
   end
-
-  private
 
 end

@@ -42,6 +42,8 @@ function todo_submit(name){
     <li><%= select_tag('times_todo', options_for_select(times_in(channel_list)), class: "form-control slide_bar_select", onchange: "todo_submit('times_todo')") %></li>
   <% end %>
   <h5>■おたっくチャンネル■</h5>
-  <%= link_to("一覧表示", controller: "otacks", action: "index") %>
+  <ul>
+    <li><%= link_to("個人別検索", controller: :otacks, action: :index) %></li>
+    <li><%= link_to("一覧表示", controller: :otacks, action: :show) %></li>
   </ul>
 </div>
