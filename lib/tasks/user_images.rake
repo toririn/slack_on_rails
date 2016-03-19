@@ -10,9 +10,9 @@ namespace :user_images do
       image_list.each do |id, image_path|
         UserImage.create(id: id, path: image_path)
       end
-      puts "アップデート完了！"
+      puts "User Images アップデート完了！"
     else
-      puts "アップデート失敗！"
+      puts "User Images アップデート失敗！"
     end
   end
 end

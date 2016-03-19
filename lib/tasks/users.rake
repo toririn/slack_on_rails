@@ -9,6 +9,6 @@ namespace :users do
     user_list.each do |name, id|
       User.create(id: id, name: name)
     end
-    puts "アップデート完了！"
+    puts "Users アップデート完了！"
   end
 end

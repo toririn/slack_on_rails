@@ -12,6 +12,6 @@ namespace :otacks do
     otack_datas.each do |id, name, members_num, member_ids|
       Otack.create(id: id, name: name, members_num: members_num, members: member_ids.join(","))
     end
-    puts "アップデート完了！"
+    puts "Otacks アップデート完了！"
   end
 end
