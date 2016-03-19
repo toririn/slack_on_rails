@@ -67,4 +67,10 @@ module Constants
       NOT_INTRODUCTION = "チャンネル紹介が登録されていません。"
     end
   end
+
+  module Otacks
+    module Errors
+      EMPTY_SEARCH_RESULT = "どうやらどのおたっくチャンネルにも参加していないようです。"
+    end
+  end
 end
