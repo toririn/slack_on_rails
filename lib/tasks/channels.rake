@@ -4,8 +4,9 @@ namespace :channels do
     Channel.delete_all
     channels = SLACK_OWNER.channels_list
     channel_list = channels["channels"].map do |channel|
+                     next unless Constants::SlackRails::SEARCHABLE_CHANNEL_LIST.any? {|ch| ch =~ channel["name"] }
                      [channel["name"], channel["id"], channel["purpose"]["value"]]
-                   end.sort {|a, b| a[0] <=> b[0] }
+                   end.compact.sort {|a, b| a[0] <=> b[0] }
     channel_list.each do |name, id, introduction|
       Channel.create(id: id, name: name, introduction: introduction)
     end

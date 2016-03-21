@@ -31,6 +31,8 @@ module Constants
     SEARCH_RESULT_MAX_COUNT = 500
     # 画像ファイルのパス
     IMAGE_ROOT_PATH = ENV["SLACK_ON_RAILS_IMAGE_ROOT_PATH"]
+    # 検索可能チャンネル命名規則
+    SEARCHABLE_CHANNEL_LIST = [/\Ageneral\Z/, /\Akb_/, /\Atimes_/, /\Axclub_i/, /\Arandom\Z/, /\Aict_/, /\Afaq_slack\Z/, /\Ahelpdesk_qa\Z/, /\Ainfo_security\Z/, /\Awotax\Z/, /_media\Z/, /-platform\Z/]
 
     # 検索タイプ関係
     module SearchTypes
