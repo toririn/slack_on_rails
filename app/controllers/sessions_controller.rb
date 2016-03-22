@@ -2,6 +2,7 @@ require 'slack'
 class SessionsController < ApplicationController
   include AuthenticateUser
   skip_before_action :authenticate_user!
+  after_action :update_last_auth, only: [:create_session, :restore_session]
   def index
     redirect_to top_path if verify_session?
   end
@@ -50,6 +51,7 @@ class SessionsController < ApplicationController
     return false if session[:token].blank?
     Slack.configure { |config| config.token = session[:token] }
     @auth_data = Slack.client.auth_test
+    return false if verify_last_auth
     @auth_data["ok"]
   rescue => ex
     return false
@@ -61,5 +63,13 @@ class SessionsController < ApplicationController
     session[:user]["id"] = @auth_data["user_id"]
     session[:user]["token"] = Constants::SLACK_ON_RAILS_TOKEN
     session[:user]["ts"] = Time.zone.now.to_i
+  end
+
+  def update_last_auth
+    User.find(session[:user]["id"]).update(last_auth: Time.zone.today)
+  end
+
+  def verify_last_auth
+    User.find(@auth_data[:user_id]).update < Time.zone.today - 10 rescue false
   end
 end
