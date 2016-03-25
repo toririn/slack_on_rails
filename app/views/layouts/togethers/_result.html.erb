@@ -28,7 +28,7 @@ $(function() {
 </script>
 <% if results %>
   <h2>検索結果</h2>
-  <%= form_tag({controller: "together", action: "save"}, method: :post) do %>
+  <%= form_tag(togethers_link_searchs_output_path, method: :post) do %>
     <%= submit_tag('lodge出力', class: "btn btn-success", name: "lodge") %>
     <table class = "table table-bordered table-hover table-condensed">
       <thead>

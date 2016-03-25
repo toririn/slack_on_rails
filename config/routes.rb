@@ -4,6 +4,15 @@ Rails.application.routes.draw do
 
   scope path_prefix do
     resources :tops, only: [:index]
+    namespace :togethers do
+      resources :link_searchs, only: [:index]
+      post "link_searchs/search"
+      post "link_searchs/output"
+      resources :query_searchs, only: [:index]
+    end
+    resources :otacks, only: [:index, :show]
+    resources :sessions, only: [:index]
+    post "sessions/destroy" => "sessions#destory"
   end
   get "#{path}search" => 'together#index'
   # todo_managementのroute
@@ -14,7 +23,6 @@ Rails.application.routes.draw do
   # searchのroute
   get "#{path}search/query" => 'together#query'
   get "#{path}search/link" => 'together#link'
-  post "#{path}search" => 'together#search'
   post "#{path}search/link" => 'together#search_link'
   post "#{path}search/:channel" => 'together#channel'
   post "#{path}save" => 'together#save'
