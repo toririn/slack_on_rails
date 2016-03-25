@@ -19,7 +19,7 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
       </button>
 
       <!-- タイトルなどのテキスト -->
-      <%= link_to("Slack on Rails!", { controller: :together, action: :top }, { class: "navbar-brand" }) %>
+      <%= link_to("Slack on Rails!", tops_path, { class: "navbar-brand" }) %>
 
     </div>
 
@@ -30,7 +30,7 @@ navbar-origin : オリジナルスタイルを当ててみると・・・
       <ul class="nav navbar-nav">
         <!-- 通常のリンク -->
         <li class="active">
-          <%= link_to("マイページ", controller: :together, action: :top) %>
+          <%= link_to("マイページ", tops_path) %>
         </li>
         <!-- ドロップダウンのメニューも配置可能 -->
         <li class="dropdown">

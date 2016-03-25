@@ -14,6 +14,7 @@ module Constants
   SLACK_ON_RAILS_TOKEN = ENV['SLACK_ON_RAILS_TOKEN']
   # アプリのルートパス
   ROOT_PATH = ENV['ROOT_PATH']
+  ROOT_PATH_PREFIX = ENV['ROOT_PATH'].chop
 
   # セッション関係
   module Sessions

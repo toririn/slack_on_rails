@@ -3,11 +3,6 @@ class TogetherController < SlackAppController
   before_action :set_user_image_list, only: [:search, :search_link]
   before_action :set_query_select_list, only: [:index, :query, :channel, :save]
 
-  def top
-    @user_name = session[:user][:name]
-    @eyes_chats = slack.search_by_reaction_for_chat(user_id: session[:user][:id], reaction_type: Constants::SlackRails::SlackReactions::EYES)
-  end
-
   def index
   end
 

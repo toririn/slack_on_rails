@@ -3,13 +3,13 @@ class SessionsController < ApplicationController
   include SessionsCallback
 
   def index
-    redirect_to top_path if verify_session?
+    redirect_to tops_url if verify_session?
   end
 
   def login
     if authenticated_user?
       restore_session
-      redirect_to controller: 'together', action: 'top'
+      redirect_to tops_url
     else
       redirect_to "/#{Constants::ROOT_PATH}auth/slack"
     end
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   def create
     slack_data = request.env['omniauth.auth']
     if create_session(slack_data)
-      redirect_to controller: 'together', action: 'top'
+      redirect_to tops_url
     else
       flash[:notice] = "Slackから拒否されちゃいました。また後でやってみてください。"
       redirect_to action: 'index'

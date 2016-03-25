@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   path = Constants::ROOT_PATH
+  path_prefix = Constants::ROOT_PATH_PREFIX
+
+  scope path_prefix do
+    resources :tops, only: [:index]
+  end
   get "#{path}search" => 'together#index'
   # todo_managementのroute
   post "#{path}todo_management/:channel/complete_task" => 'todo_managements#complete_task'
@@ -19,7 +24,6 @@ Rails.application.routes.draw do
   get "#{path}auth/:provider/callback" => 'sessions#create'
   post "#{path}login" => 'sessions#login'
   get  "#{path}logout" => 'sessions#destroy'
-  get  "#{path}top" => 'together#top'
   # Otack関係
   get  "#{path}otacks/show" => 'otacks#show'
   get  "#{path}otacks/index" => 'otacks#index'
