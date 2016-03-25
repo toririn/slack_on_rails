@@ -1,8 +1,7 @@
 require 'slack'
 class SessionsController < ApplicationController
-  include AuthenticateUser
-  skip_before_action :authenticate_user!
-  after_action :update_last_auth, only: [:create_session, :restore_session]
+  include SessionsCallback
+
   def index
     redirect_to top_path if verify_session?
   end
@@ -37,13 +36,16 @@ class SessionsController < ApplicationController
   def create_session(slack_data)
     return false if slack_data.blank?
     reset_session
-    session[:user] = {}
-    session[:user]["name"] = slack_data["info"]["user"]
-    session[:user]["id"] = slack_data["info"]["user_id"]
-    session[:user]["token"] = Constants::SLACK_ON_RAILS_TOKEN
-    session[:user]["ts"] = Time.zone.now.to_i
+    session[:user] = {}.tap do |user|
+      user[:name]  = slack_data["info"]["user"]
+      user[:id]    = slack_data["info"]["user_id"]
+      user[:token] = Constants::SLACK_ON_RAILS_TOKEN
+      user[:ts]   = Time.zone.now.to_i
+    end
     session[:token] = slack_data["credentials"]["token"]
   rescue => ex
+    logger.debug(ex.messages)
+    logger.debug(ex.backtrace.join(String::LF))
     return false
   end
 
@@ -58,16 +60,14 @@ class SessionsController < ApplicationController
   end
 
   def restore_session
-    session[:user] = {}
-    session[:user]["name"] = @auth_data["user"]
-    session[:user]["id"] = @auth_data["user_id"]
-    session[:user]["token"] = Constants::SLACK_ON_RAILS_TOKEN
-    session[:user]["ts"] = Time.zone.now.to_i
+    session[:user] = {}.tap do |user|
+      user[:name] = @auth_data["user"]
+      user[:id] = @auth_data["user_id"]
+      user[:token] = Constants::SLACK_ON_RAILS_TOKEN
+      user[:ts] = Time.zone.now.to_i
+    end
   end
 
-  def update_last_auth
-    User.find(session[:user]["id"]).update(last_auth: Time.zone.today)
-  end
 
   def verify_last_auth
     User.find(@auth_data[:user_id]).update < Time.zone.today - 10 rescue false

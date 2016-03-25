@@ -29,7 +29,7 @@ module TodoManagementsParameter
       todo_list: params[:todo_list],
       done_work_list: params[:done_work_list],
       done_time_list: params[:done_time_list],
-      user_name: session[:user]["name"],
+      user_name: session[:user][:name],
       report_date: params[:report_date],
     )
   end

@@ -13,7 +13,7 @@ module AuthenticateUser
       return redirect_to controller: 'sessions', action: 'index'
     end
     if verify_session?
-      session[:user]["ts"] = Time.zone.now.to_i
+      session[:user][:ts] = Time.zone.now.to_i
     else
       session[:user] = nil
       flash[:notice] =  "ログイン情報が不正か、前回のログインがかなり昔のようです。もう一度認証をお願いします。"
@@ -30,10 +30,10 @@ module AuthenticateUser
   end
 
   def verify_token?
-    session[:user]["token"] == Constants::SLACK_ON_RAILS_TOKEN
+    session[:user][:token] == Constants::SLACK_ON_RAILS_TOKEN
   end
 
   def verify_date?
-    session[:user]["ts"] > Time.zone.now.days_ago(Constants::Sessions::HOLDING_PERIOD).to_i
+    session[:user][:ts] > Time.zone.now.days_ago(Constants::Sessions::HOLDING_PERIOD).to_i
   end
 end
