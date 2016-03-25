@@ -4,14 +4,24 @@ Rails.application.routes.draw do
 
   scope path_prefix do
     resources :tops, only: [:index]
+
     namespace :togethers do
       post "searchs/output"
+
       resources :link_searchs, only: [:index]
       post "link_searchs/search"
+
       resources :query_searchs, only: [:index]
       post "query_searchs/search"
+
+      resources :seted_channel_searchs, only: [:index]
+      post "seted_channel_searchs/search"
+      post "seted_channel_searchs/:channel" => "seted_channel_searchs#show"
+      get  "seted_channel_searchs/:channel" => "seted_channel_searchs#show"
     end
+
     resources :otacks, only: [:index, :show]
+
     resources :sessions, only: [:index]
     post "sessions/destroy" => "sessions#destory"
   end
@@ -25,7 +35,6 @@ Rails.application.routes.draw do
   get "#{path}search/query" => 'together#query'
   get "#{path}search/link" => 'together#link'
   post "#{path}search/link" => 'together#search_link'
-  post "#{path}search/:channel" => 'together#channel'
   post "#{path}save" => 'together#save'
   post "#{path}save_lodge" => 'together#save_lodge'
   get  "#{path}" => "sessions#index"

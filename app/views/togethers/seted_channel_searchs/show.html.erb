@@ -1,0 +1,22 @@
+<div class="form-group" >
+<%= form_tag(togethers_seted_channel_searchs_search_path, remote: true, method: :post, class: "search_form" ) do %>
+    <input name="slack[channel]" type="hidden" value="<%= @channel %>">
+    <h4>【<%= @channel %>】チャンネルを検索する</h4>
+    <div class="col-sm-6">
+      <%= label_tag('slack[user]', "ユーザ名") %>
+      <%= select_tag('slack[user]', options_for_select(options_user_list(@user_list)), class: "form-control") %>
+    </div>
+    <div class="col-sm-6">
+      <%= label_tag('slack[keywords]', "検索文字列") %>
+      <%= text_field_tag('slack[keywords]', '', class: "form-control") %>
+    </div>
+    <%= submit_tag('検索', class: "btn btn-primary  ladda-button") %>
+  <% end %>
+</div><!-- class;form-group -->
+<div class="col-sm-6" style="float: right;">
+  <%= render(partial: 'layouts/togethers/save') %>
+</div>
+<div id="result" class="col-sm-6">
+  <h2>検索結果</h2>
+  <p>ここに検索結果が表示されるよ！</p>
+</div>
