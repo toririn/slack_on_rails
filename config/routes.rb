@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   scope path_prefix do
     resources :tops, only: [:index]
     namespace :togethers do
+      post "searchs/output"
       resources :link_searchs, only: [:index]
       post "link_searchs/search"
-      post "link_searchs/output"
       resources :query_searchs, only: [:index]
+      post "query_searchs/search"
     end
     resources :otacks, only: [:index, :show]
     resources :sessions, only: [:index]

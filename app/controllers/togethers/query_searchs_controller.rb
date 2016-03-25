@@ -1,4 +1,4 @@
-class Togethers::QuerySearchsController < SearchsController
+class Togethers::QuerySearchsController < Togethers::SearchsController
   before_action :set_query_select_list, only: [:index, :query, :channel, :save]
 
   def index
