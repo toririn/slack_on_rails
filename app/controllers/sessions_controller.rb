@@ -21,14 +21,14 @@ class SessionsController < ApplicationController
       redirect_to tops_url
     else
       flash[:notice] = "Slackから拒否されちゃいました。また後でやってみてください。"
-      redirect_to action: 'index'
+      redirect_to root_url
     end
   end
 
   def destroy
     session[:user] = nil
     flash[:notice] = "ログアウトが完了しました。さようなら！"
-    redirect_to action: 'index'
+    redirect_to root_url
   end
 
   private
@@ -67,7 +67,6 @@ class SessionsController < ApplicationController
       user[:ts] = Time.zone.now.to_i
     end
   end
-
 
   def verify_last_auth
     User.find(@auth_data[:user_id]).update < Time.zone.today - 10 rescue false
