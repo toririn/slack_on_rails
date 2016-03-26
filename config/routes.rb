@@ -27,18 +27,15 @@ Rails.application.routes.draw do
     post "todo_managements/:channel"        => 'todo_managements#show'
     post "todo_managements/:channel/create" => 'todo_managements#create'
 
-    resources :otacks, only: [:index, :show]
+    resources :otacks, only: [:index]
+    get   "otacks/show"   => 'otacks#show'
+    get   "otacks/search" => 'otacks#search'
 
     resources :sessions, only: [:index]
     post "sessions/destroy" => "sessions#destory"
   end
-  # todo_managementのroute
-  # searchのroute
   get  "#{path}" => "sessions#index"
   # Otack関係
-  get  "#{path}otacks/show" => 'otacks#show'
-  get  "#{path}otacks/index" => 'otacks#index'
-  post  "#{path}otacks/search" => 'otacks#search'
   get "*anything" => 'errors#routing'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

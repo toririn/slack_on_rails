@@ -1,4 +1,15 @@
-<h2>おたっくチャンネル一覧</h2>
+<h2>個人別表示</h2>
+<h4>あの人のおたっくな趣味を見てみましょう。</h4>
 <div class="row">
-  <%= render(partial: 'otack_channel', locals: { otacks: @otacks })%>
+  <div class="col-sm-12">
+    検索したい人を選んでください。
+    <%= form_tag(otacks_search_path, remote: true, method: :get, class: "search_form") do %>
+      <%= select_tag(:user, options_for_select(@user_list), class: "form-control") %>
+    <%= submit_tag('検索', class: "btn btn-primary ladda-button", "data-style" => "contract") %>
+    <% end %>
+  </div>
+  <div id="result_head" class="col-sm-12">
+  </div>
+  <div id="result" class="col-sm-12">
+  </div>
 </div>

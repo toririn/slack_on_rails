@@ -1,11 +1,11 @@
 class OtacksController < SlackAppController
 
   def index
-    set_user_list
+    @otacks = Otack.all
   end
 
   def show
-    @otacks = Otack.all
+    set_user_list
   end
 
   def search
