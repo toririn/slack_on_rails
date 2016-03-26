@@ -33,4 +33,11 @@ module TodoManagementsParameter
       report_date: params[:report_date],
     )
   end
+
+  def set_selected_day_time_param
+    return if @selected_day.blank?
+    # paramの日付がmm/dd/yyyy hh:MM;ss で渡されるため以下で分離
+    month, day, year = @selected_day.slice(0, @selected_day.index(" ")).split("/")
+    Time.zone.local(year, month, day)
+  end
 end

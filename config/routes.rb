@@ -20,16 +20,19 @@ Rails.application.routes.draw do
       get  "seted_channel_searchs/:channel" => "seted_channel_searchs#show"
     end
 
+    # タスク管理関係
+    resources :todo_managements, only: [:index]
+    post "todo_managements/:channel/update" => 'todo_managements#update'
+    get  "todo_managements/:channel"        => 'todo_managements#show'
+    post "todo_managements/:channel"        => 'todo_managements#show'
+    post "todo_managements/:channel/create" => 'todo_managements#create'
+
     resources :otacks, only: [:index, :show]
 
     resources :sessions, only: [:index]
     post "sessions/destroy" => "sessions#destory"
   end
   # todo_managementのroute
-  post "#{path}todo_management/:channel/complete_task" => 'todo_managements#complete_task'
-  get "#{path}todo_management/:channel" => 'todo_managements#index'
-  post "#{path}todo_management/:channel" => 'todo_managements#modify'
-  post "#{path}todo_management/:channel/report" => 'todo_managements#report'
   # searchのroute
   get  "#{path}" => "sessions#index"
   # Otack関係

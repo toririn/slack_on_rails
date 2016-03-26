@@ -24,7 +24,7 @@
           <span class="small text-muted"><%= time_by(task[:ts]) %></span>
         </td>
         <td >
-          <%= form_tag({controller: "todo_managements", action: "complete_task", channel: @channel_name}, remote: true, method: :post) do %>
+          <%= form_tag({controller: :todo_managements, action: :update, channel: @channel_name}, remote: true, method: :post) do %>
             <input type="hidden" name="ts" value="<%= task[:ts] %>">
             <input type="hidden" name="text" value="<%= work_by(@slack_markdown_processor.call(task[:text])[:output].to_s) %>">
             <%= submit_tag('完了', class: "small btn btn-warning", name: "complete") %>

@@ -21,7 +21,7 @@ function search_submit(name){
 }
 function todo_submit(name){
   var link = document.forms["todo_management_form"].elements[name].value;
-  document.forms["todo_management_form"].action = "/<%= Constants::ROOT_PATH %>todo_management/" + link;
+  document.forms["todo_management_form"].action = "<%= todo_managements_path %>/" + link;
   document.forms["todo_management_form"].method = "POST";
   document.forms["todo_management_form"].submit();
 }

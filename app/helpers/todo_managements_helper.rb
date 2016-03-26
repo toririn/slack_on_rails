@@ -42,7 +42,8 @@ module TodoManagementsHelper
   def from_done_time(done_time, done_work_list, index_no)
     idx = index_no - 1
     if (idx == 0)
-      beginning_time = Time.zone.today.since(9.hours).to_i
+      selected_day = @selected_day_time || Time.zone.today
+      beginning_time = selected_day.since(9.hours).to_i
       if (done_time >= beginning_time)
         Time.zone.at(done_time - beginning_time).utc.strftime("%X")
       else
