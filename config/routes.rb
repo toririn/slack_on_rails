@@ -25,23 +25,13 @@ Rails.application.routes.draw do
     resources :sessions, only: [:index]
     post "sessions/destroy" => "sessions#destory"
   end
-  get "#{path}search" => 'together#index'
   # todo_managementのroute
   post "#{path}todo_management/:channel/complete_task" => 'todo_managements#complete_task'
   get "#{path}todo_management/:channel" => 'todo_managements#index'
   post "#{path}todo_management/:channel" => 'todo_managements#modify'
   post "#{path}todo_management/:channel/report" => 'todo_managements#report'
   # searchのroute
-  get "#{path}search/query" => 'together#query'
-  get "#{path}search/link" => 'together#link'
-  post "#{path}search/link" => 'together#search_link'
-  post "#{path}save" => 'together#save'
-  post "#{path}save_lodge" => 'together#save_lodge'
   get  "#{path}" => "sessions#index"
-  post "#{path}auth/:provider/callback" => 'sessions#create'
-  get "#{path}auth/:provider/callback" => 'sessions#create'
-  post "#{path}login" => 'sessions#login'
-  get  "#{path}logout" => 'sessions#destroy'
   # Otack関係
   get  "#{path}otacks/show" => 'otacks#show'
   get  "#{path}otacks/index" => 'otacks#index'
