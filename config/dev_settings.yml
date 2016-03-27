@@ -9,8 +9,6 @@ defaults: &defaults
   SLACK_ON_RAILS_TOKEN:
   ROOT_PATH: "slackonrails/"
   SLACK_ON_RAILS_IMAGE_ROOT_PATH: "/images"
-  SLACK_ON_RAILS_DIRECTORY:
-  SLACK_ON_RAILS_APPLICATION_NAME: "src"
 
 development:
   <<: *defaults
