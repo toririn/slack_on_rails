@@ -17,11 +17,11 @@ class SessionsController < ApplicationController
 
   def create
     slack_data = request.env['omniauth.auth']
+    return redirect_to root_url, notice: "ログインするチームを間違えていますよ！" unless verify_login_team(slack_data["info"]["team"], slack_data["info"]["team_id"])
     if create_session(slack_data)
       redirect_to tops_url
     else
-      flash[:notice] = "Slackから拒否されちゃいました。また後でやってみてください。"
-      redirect_to root_url
+      redirect_to root_url, notice: "Slackから拒否されちゃいました。また後でやってみてください。"
     end
   end
 
@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
       user[:name]  = slack_data["info"]["user"]
       user[:id]    = slack_data["info"]["user_id"]
       user[:token] = Constants::SLACK_ON_RAILS_TOKEN
-      user[:ts]   = Time.zone.now.to_i
+      user[:ts]    = Time.zone.now.to_i
     end
     session[:token] = slack_data["credentials"]["token"]
   rescue => ex
@@ -70,5 +70,9 @@ class SessionsController < ApplicationController
 
   def verify_last_auth
     User.find(@auth_data[:user_id]).update < Time.zone.today - 10 rescue false
+  end
+
+  def verify_login_team(team, team_id)
+    team == Constants::SLACK_TEAM_NAME && team_id == Constants::SLACK_TEAM_ID
   end
 end

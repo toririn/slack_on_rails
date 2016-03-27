@@ -15,6 +15,10 @@ module Constants
   # アプリのルートパス
   ROOT_PATH = ENV['ROOT_PATH']
   ROOT_PATH_PREFIX = ENV['ROOT_PATH'].chop
+  # ログインするチーム名
+  SLACK_TEAM_NAME = ENV["SLACK_TEAM_NAME"]
+  # ログインするチームID
+  SLACK_TEAM_ID   = ENV["SLACK_TEAM_ID"]
 
   # セッション関係
   module Sessions
