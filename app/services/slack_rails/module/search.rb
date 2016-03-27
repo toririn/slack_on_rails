@@ -37,7 +37,7 @@ module SlackRails::Module::Search
           f = reactions["items"][idx]["message"]
           chats << {user: f["user"], text: f["text"], ts: f["ts"], permalink: f["permalink"] }
         end
-      end
+      end rescue next
     end
     chats
   rescue => ex
