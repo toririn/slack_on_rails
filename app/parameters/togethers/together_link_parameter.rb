@@ -1,4 +1,4 @@
-class TogetherLinkParameter
+class Togethers::TogetherLinkParameter
   attr_accessor(
     :link,
     :count,

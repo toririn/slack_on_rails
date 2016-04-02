@@ -1,4 +1,4 @@
-class Forms::ChannelValidator < BaseValidator
+class FormValidators::ChannelValidator < BaseValidator
   attr_accessor(
     :channel,
   )

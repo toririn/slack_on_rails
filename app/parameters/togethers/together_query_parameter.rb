@@ -1,4 +1,4 @@
-class TogetherQueryParameter
+class Togethers::TogetherQueryParameter
   attr_accessor(
     :channel,
     :user,

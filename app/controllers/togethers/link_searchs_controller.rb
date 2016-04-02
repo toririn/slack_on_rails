@@ -5,7 +5,7 @@ class Togethers::LinkSearchsController < Togethers::SearchsController
   end
 
   def search
-    @validate = Forms::LinkValidator.new(params.require(:slack).permit(:link))
+    @validate = ::FormValidators::LinkValidator.new(params.require(:slack).permit(:link))
     if @validate.has_error?
       @count_candidate = { "10" => 10, "50" => 50, "100" => 100, "250" => 250, "500" => 500 }
       return

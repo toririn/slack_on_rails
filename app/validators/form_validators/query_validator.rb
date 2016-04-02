@@ -1,4 +1,4 @@
-class Forms::QueryValidator < BaseValidator
+class FormValidators::QueryValidator < BaseValidator
   attr_accessor(
     :channel,
     :user,

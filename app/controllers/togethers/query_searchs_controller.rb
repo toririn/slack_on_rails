@@ -6,7 +6,7 @@ class Togethers::QuerySearchsController < Togethers::SearchsController
   end
 
   def search
-    @validate = Forms::QueryValidator.new(search_params)
+    @validate = ::FormValidators::QueryValidator.new(search_params)
     return if @validate.has_error?
 
     parameter = set_query_params

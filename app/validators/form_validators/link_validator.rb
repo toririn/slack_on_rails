@@ -1,4 +1,4 @@
-class Forms::LinkValidator < BaseValidator
+class FormValidators::LinkValidator < BaseValidator
   attr_accessor(
     :link,
   )
