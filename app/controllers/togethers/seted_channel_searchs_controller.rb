@@ -1,7 +1,8 @@
 class Togethers::SetedChannelSearchsController < Togethers::QuerySearchsController
-  before_action :set_query_select_list, only: [:show]
 
   def index
+    set_user_list
+    set_channel_list
   end
 
   def show

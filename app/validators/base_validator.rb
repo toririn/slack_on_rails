@@ -1,4 +1,4 @@
-class Validators::Base
+class BaseValidator
   include ActiveModel::Model
 
   def has_error?

@@ -1,11 +1,12 @@
 class Togethers::QuerySearchsController < Togethers::SearchsController
-  before_action :set_query_select_list, only: [:index]
 
   def index
+    set_user_list
+    set_channel_list
   end
 
   def search
-    @validate = Validators::SlackSearch.new(search_params)
+    @validate = Forms::QueryValidator.new(search_params)
     return if @validate.has_error?
 
     parameter = set_query_params
@@ -15,13 +16,8 @@ class Togethers::QuerySearchsController < Togethers::SearchsController
 
   private
 
-  def set_query_select_list
-    set_user_list
-    set_channel_list
-  end
-
   def search_params
-    params.require(:slack).permit(:channel, :user, :reaction, :keywords)
+    params.require(:slack).permit(:channel, :user, :keywords)
   end
 
   def set_query_params
