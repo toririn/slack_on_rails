@@ -6,7 +6,7 @@ class TodoManagementsController < SlackAppController
   end
 
   def show
-    @validate = Forms::ChannelValidator.new(params.permit(:channel))
+    @validate = ::FormValidators::ChannelValidator.new(params.permit(:channel))
     return render if @validate.has_error?
     @selected_day_time = set_selected_day_time_param
     set_todo_management_list_param
