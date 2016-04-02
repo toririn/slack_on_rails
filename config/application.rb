@@ -34,5 +34,6 @@ module Src
     config.autoload_paths += %W(#{config.root}/app/services)
     config.autoload_paths += %W(#{config.root}/app/parameters)
     config.autoload_paths += %W(#{config.root}/app/callbacks)
+    config.autoload_paths += Dir[Rails.root.join('app', 'controllers', '*/')]
   end
 end

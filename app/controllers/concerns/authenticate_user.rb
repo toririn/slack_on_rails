@@ -9,14 +9,14 @@ module AuthenticateUser
 
   def authenticate_user!
     if session[:user].blank?
-      flash[:notice] = "ログインしてないですよ〜。ログインしてください！"
+      flash[:notice] = Constants::Sessions::Errors::Messages::NOT_LOGIN
       return redirect_to root_url
     end
     if verify_session?
       session[:user][:ts] = Time.zone.now.to_i
     else
       session[:user] = nil
-      flash[:notice] =  "ログイン情報が不正か、前回のログインがかなり昔のようです。もう一度認証をお願いします。"
+      flash[:notice] = Constants::Sessions::Errors::Messages::SESSION_ERROR
       redirect_to root_url
     end
   end

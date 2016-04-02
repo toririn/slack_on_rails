@@ -24,6 +24,15 @@ module Constants
   module Sessions
     # セッションの保持期間(日)
     HOLDING_PERIOD = 10
+    module Errors
+      module Messages
+        DIFFERENT_TEAM   = "認証するチームが違いますよ！"
+        NOT_LOGIN        = "ログインしてないです！　ログインしてください！"
+        SLACK_AUTH_ERROR = "Slackから拒否されちゃいました。もう一度試してみてください。"
+        SESSION_ERROR    = "前回のログインが昔か、ログイン情報が消えていまし。もう一度認証をお願いします。"
+      end
+    end
+    LOGOUT_MESSAGE     = "ログアウトが完了しました。さようなら！"
  end
 
   # SlackRails関係

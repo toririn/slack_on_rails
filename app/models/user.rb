@@ -9,4 +9,9 @@ class User < ActiveRecord::Base
       "not found"
     end
   end
+
+  def auth_date_update
+    self.last_auth = Time.zone.now
+    save
+  end
 end

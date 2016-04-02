@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   path_prefix = Constants::ROOT_PATH_PREFIX
 
   scope path_prefix do
-    root to: "sessions#index"
+    root to: "roots#index"
 
     resources :tops, only: [:index]
 
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
     resources :sessions, only: [:index]
     get  "sessions/destroy"
-    post "sessions/login"
+    post "logins/new"
 
     # Slackとの認証関係
     post "auth/:provider/callback"  => 'sessions#create'
