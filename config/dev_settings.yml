@@ -9,6 +9,8 @@ defaults: &defaults
   SLACK_ON_RAILS_TOKEN:
   ROOT_PATH: "slackonrails/"
   SLACK_ON_RAILS_IMAGE_ROOT_PATH: "/images"
+  SLACK_TEAM_NAME: "TEAMNAME"
+  SLACK_TEAM_ID: "T00000L"
 
 development:
   <<: *defaults
