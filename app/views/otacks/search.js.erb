@@ -1,6 +1,5 @@
 <% if @otacks.empty? %>
   $('#error_messages').html("<%=j br(Constants::Otacks::Errors::EMPTY_SEARCH_RESULT) %>")
-  $('#user').html("")
   $('#result').html("")
 <% else %>
   $('#result_head').html('<h4><%= @user_name %>さんの参加おたっくチャンネル一覧</h4>')

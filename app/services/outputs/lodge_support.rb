@@ -17,6 +17,10 @@ class Outputs::LodgeSupport
     elsif type == "markdown"
       output_markdown.join("\n")
     end
+  rescue => e
+    Rails.logger.error(e)
+    Rails.logger.error(e.backtrace)
+    "Error"
   end
 
   #private

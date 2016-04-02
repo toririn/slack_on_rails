@@ -1,11 +1,8 @@
 class Togethers::SetedChannelSearchsController < Togethers::QuerySearchsController
 
-  def index
+  def show
     set_user_list
     set_channel_list
-  end
-
-  def show
     @channel = params[:channel]
   end
 

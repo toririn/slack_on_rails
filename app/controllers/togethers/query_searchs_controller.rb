@@ -21,7 +21,7 @@ class Togethers::QuerySearchsController < Togethers::SearchsController
   end
 
   def set_query_params
-    TogetherQueryParameter.new.tap do |p|
+    Togethers::TogetherQueryParameter.new.tap do |p|
       p.channel  = params[:slack][:channel]
       p.user     = params[:slack][:user]
       p.reaction = params[:slack][:reaction]
