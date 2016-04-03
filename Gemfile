@@ -82,6 +82,8 @@ group :development, :test do
   # テスト関連
   gem "rspec-rails"        # rspec本体
   gem "shoulda-matchers"   # モデルのテストを簡易にかけるmatcherが使える
+  gem "guard-rspec"
+  gem "spring-commands-rspec"
   gem "factory_girl_rails" # テストデータ作成
   gem "capybara"           # エンドツーエンドテスト
   gem "capybara-webkit"    # エンドツーエンドテスト(javascript含む)
@@ -90,6 +92,8 @@ group :development, :test do
   gem "test-queue"         # テストを並列で実行する
   gem 'faker'              # 本物っぽいテストデータの作成
   gem 'faker-japanese'     # 本物っぽいテストデータの作成（日本語対応）))
+  gem "poltergeist"
+  gem "shoulda-matchers"
   # サンプルデータ作成関連
   gem "seed-fu", "~> 2.3"
 end
