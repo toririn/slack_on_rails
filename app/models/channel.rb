@@ -1,4 +1,7 @@
 class Channel < ActiveRecord::Base
+  validates :id,   presence: true
+  validates :name, presence: true
+
   scope :otack_channels, -> { ransack(name_start: "wotax_").result }
 
   def self.convert(id: nil, name: nil)
