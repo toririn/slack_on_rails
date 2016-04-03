@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
   def self.convert(id: nil, name: nil)
     @@users ||= User.pluck(:id, :name)
     if id
-      @@users.find{|user_id, user_name| user_id == id }.try(:[], 1)
+      @@users.find{|user_id, user_name| user_id == id }.try(:[], 1) || "not found"
     elsif name
-      @@users.find{|user_id, user_name| user_name == name }.try(:[], 0)
+      @@users.find{|user_id, user_name| user_name == name }.try(:[], 0) || "not found"
     else
       "not found"
     end
