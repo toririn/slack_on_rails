@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  validates :id,   presence: true
+  validates :name, presence: true
+
   def self.convert(id: nil, name: nil)
     @@users ||= User.pluck(:id, :name)
     if id
